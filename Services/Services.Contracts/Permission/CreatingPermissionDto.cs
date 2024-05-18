@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Services.Contracts.Role;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Services.Contracts.Permission
 {
-    /// <summary>
-    /// Разрешение.
-    /// </summary>
-    public class Permission: IEntity<Guid>
+    public class CreatingPermissionDto
     {
         /// <summary>
         /// Идентификатор.
@@ -19,15 +20,7 @@ namespace Domain.Entities
         /// <summary> Описание. </summary>
         public string? Description { get; set; }
 
-        /// <summary> Роль. </summary>
-        public Role Role { get; set; }
-
         /// <summary>ID роли. </summary>
         public Guid RoleId { get; set; }
-
-        /// <summary>
-        /// Удалено.
-        /// </summary>
-        public bool Deleted { get; set; }
     }
 }

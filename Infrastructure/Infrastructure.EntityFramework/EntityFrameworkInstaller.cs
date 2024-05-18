@@ -10,7 +10,7 @@ namespace Infrastructure.EntityFramework
             string connectionString)
         {
             services.AddDbContext<DatabaseContext>(optionsBuilder
-                => optionsBuilder                    
+                => optionsBuilder
                     .UseNpgsql(connectionString));
 
                     #region health checks
@@ -20,7 +20,7 @@ namespace Infrastructure.EntityFramework
                             tags: new[] { "db_ef_healthcheck" },
                             customTestQuery: async (context, token) =>
                             {
-                                return await context.Lessons.AnyAsync(token);
+                                return await context.Users.AnyAsync(token);
                             });
 
                     #endregion

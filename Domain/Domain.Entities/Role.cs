@@ -6,7 +6,7 @@ namespace Domain.Entities
     /// <summary>
     /// Роль.
     /// </summary>
-    public class UserGroup: IEntity<Guid>
+    public class Role : IEntity<Guid>
     {
         /// <summary>
         /// Идентификатор.
@@ -16,7 +16,12 @@ namespace Domain.Entities
         /// <summary>
         /// Наименование.
         /// </summary>
-        public string Name { get; set; }       
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Права доступа.
+        /// </summary>
+        public virtual List<Permission>? Permissions { get; set; }
 
         /// <summary>
         /// Пользователи.

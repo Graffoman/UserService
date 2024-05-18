@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Services.Contracts.User
 {
-    /// <summary>
-    /// Пользователь
-    /// </summary>
-    public class User: IEntity<Guid>
+    public class CreatingUserDto
     {
         /// <summary>
         /// Идентификатор.
         /// </summary>
         public Guid Id { get; set; }
-        
+
         /// <summary> Имя. </summary>
         public string Name { get; set; }
 
@@ -32,21 +33,5 @@ namespace Domain.Entities
 
         /// <summary> Хэш пароля. </summary>
         public string PasswordHash { get; set; }
-
-        /// <summary>
-        /// Группы пользователей.
-        /// </summary>
-        public virtual List<UserGroup>? UserGroups { get; set; }
-
-        /// <summary>
-        /// Роли.
-        /// </summary>       
-        public virtual List<Role>? Roles { get; set; }
-
-        /// <summary>
-        /// Удалено.
-        /// </summary>
-        public bool Deleted { get; set; }
-
     }
 }

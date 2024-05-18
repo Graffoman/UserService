@@ -10,8 +10,8 @@ namespace Infrastructure.EntityFramework
     /// </summary>
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
-        {
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)       
+        {          
         }
         
         /// <summary>
@@ -25,6 +25,11 @@ namespace Infrastructure.EntityFramework
         public DbSet<UserGroup> UserGroups { get; set; }
 
         /// <summary>
+        /// Роли пользователей.
+        /// </summary>
+        public DbSet<Role> Roles { get; set; }
+
+        /// <summary>
         /// Права доступа.
         /// </summary>
         public DbSet<Permission> Permissions { get; set; }
@@ -34,9 +39,8 @@ namespace Infrastructure.EntityFramework
             base.OnModelCreating(modelBuilder);   
 
             modelBuilder.Entity<User>().ToTable("user");
-
             modelBuilder.Entity<UserGroup>().ToTable("usergroup");
-
+            modelBuilder.Entity<Role>().ToTable("role");
             modelBuilder.Entity<Permission>().ToTable("permission");
 
             modelBuilder.Entity<UserGroup>()
@@ -44,26 +48,30 @@ namespace Infrastructure.EntityFramework
                 .WithMany(s => s.UserGroups)
                 .UsingEntity(j => j.ToTable("usertousergroup"));
 
-            modelBuilder.Entity<UserGroup>()
+            modelBuilder.Entity<Role>()
+                .HasMany(c => c.Users)
+                .WithMany(s => s.Roles)
+                .UsingEntity(j => j.ToTable("usertoroles"));
+
+            modelBuilder.Entity<Role>()
                 .HasMany(u => u.Permissions)
-                .WithOne(c => c.UserGroup)
-                .HasForeignKey(e => e.UserGroupId)
+                .WithOne(c => c.Role )
+                .HasForeignKey(e => e.RoleId)
                 .IsRequired();
 
-            modelBuilder.Entity<User>().HasIndex(c => c.Email);
+            modelBuilder.Entity<User>().HasIndex(u => new { u.Email, u.PasswordHash });
             modelBuilder.Entity<User>().Property(c => c.Name).HasMaxLength(256);
             modelBuilder.Entity<User>().Property(c => c.LastName).HasMaxLength(256);
-            modelBuilder.Entity<User>().Property(c => c.Patronymic).HasMaxLength(256);
+            modelBuilder.Entity<User>().Property(c => c.MiddleName).HasMaxLength(256);
             modelBuilder.Entity<User>().Property(c => c.Department).HasMaxLength(512);
             modelBuilder.Entity<User>().Property(c => c.Email).HasMaxLength(256);
 
             modelBuilder.Entity<UserGroup>().Property(c => c.Name).HasMaxLength(256);
 
+            modelBuilder.Entity<Role>().Property(c => c.Name).HasMaxLength(256);
+
             modelBuilder.Entity<Permission>().Property(c => c.Name).HasMaxLength(256);
-            modelBuilder.Entity<Permission>().HasIndex(c => c.UserGroupId);
-
-
-
+            modelBuilder.Entity<Permission>().HasIndex(c => c.RoleId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

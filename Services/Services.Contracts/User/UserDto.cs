@@ -1,17 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Services.Contracts.UserGroup;
+using Services.Contracts.Role;
 
-namespace Domain.Entities
+namespace Services.Contracts.User
 {
     /// <summary>
-    /// Пользователь
+    /// ДТО курса.
     /// </summary>
-    public class User: IEntity<Guid>
+    public class UserDto
     {
         /// <summary>
         /// Идентификатор.
         /// </summary>
         public Guid Id { get; set; }
-        
+
         /// <summary> Имя. </summary>
         public string Name { get; set; }
 
@@ -36,17 +38,13 @@ namespace Domain.Entities
         /// <summary>
         /// Группы пользователей.
         /// </summary>
-        public virtual List<UserGroup>? UserGroups { get; set; }
+        public virtual List<UserGroupDto>? UserGroups { get; set; }
 
         /// <summary>
         /// Роли.
         /// </summary>       
-        public virtual List<Role>? Roles { get; set; }
-
-        /// <summary>
-        /// Удалено.
-        /// </summary>
-        public bool Deleted { get; set; }
+        public virtual List<RoleDto>? Roles { get; set; }
 
     }
 }
+
