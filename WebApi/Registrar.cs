@@ -36,8 +36,8 @@ namespace WebApi
         private static IServiceCollection InstallRepositories(this IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddTransient<ICourseRepository, CourseRepository>()
-                .AddTransient<ILessonRepository, LessonRepository>();
+                .AddTransient<IUserRepository, CourseRepository>()
+                .AddTransient<IUserGroupRepository, LessonRepository>();
             return serviceCollection;
         }
     }

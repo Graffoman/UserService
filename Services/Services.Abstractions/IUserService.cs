@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Services.Contracts.User;
+using Services.Contracts.Role;
+using Services.Contracts.UserGroup;
 
 namespace Services.Abstractions
 {
@@ -81,5 +83,19 @@ namespace Services.Abstractions
         /// <param name="userGroupId"> Иентификатор группы. </param>
         /// <param name="deletingUserFromUserGroupDto"> ДТО удаления пользователя из группы. </param>
         Task DeleteFromUserGroupAsync(Guid id, Guid userGroupId, DeletingUserFromUserGroupDto deletingUserFromUserGroupDto);
+
+        /// <summary>
+        /// Получить список ролей пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список ролй. </returns>
+        Task<ICollection<RoleDto>> GetUserRoles(Guid id);
+
+        /// <summary>
+        /// Получить список групп пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список групп. </returns>
+        Task<ICollection<UpdatingUserGroupDto>> GetUserGroups(Guid id);
     }
 }
