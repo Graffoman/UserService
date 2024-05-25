@@ -19,11 +19,11 @@ namespace Domain.Entities
         /// <summary> Описание. </summary>
         public string? Description { get; set; }
 
-        /// <summary> Роль. </summary>
-        public Role Role { get; set; }
-
         /// <summary>ID роли. </summary>
         public Guid RoleId { get; set; }
+
+        /// <summary> Роль. </summary>
+        public Role Role { get; set; }        
 
         /// <summary>
         /// Удалено.

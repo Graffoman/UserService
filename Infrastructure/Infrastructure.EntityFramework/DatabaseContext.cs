@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.EntityFramework
 {
@@ -10,24 +11,34 @@ namespace Infrastructure.EntityFramework
     /// </summary>
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)       
-        {          
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        {
         }
-        
+
         /// <summary>
         /// Пользователи.
         /// </summary>
         public DbSet<User> Users { get; set; }
-        
+
         /// <summary>
         /// Группы пользователей.
         /// </summary>
         public DbSet<UserGroup> UserGroups { get; set; }
 
         /// <summary>
-        /// Роли пользователей.
+        /// Группы.
+        /// </summary>
+        public DbSet<Group> Groups { get; set; }
+
+        /// <summary>
+        /// Роли
         /// </summary>
         public DbSet<Role> Roles { get; set; }
+
+        /// <summary>
+        /// Роли пользователей.
+        /// </summary>
+        public DbSet<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Права доступа.
@@ -36,26 +47,52 @@ namespace Infrastructure.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);   
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable("user");
             modelBuilder.Entity<UserGroup>().ToTable("usergroup");
+            modelBuilder.Entity<Group>().ToTable("group");
             modelBuilder.Entity<Role>().ToTable("role");
+            modelBuilder.Entity<UserRole>().ToTable("userrole");
             modelBuilder.Entity<Permission>().ToTable("permission");
 
             modelBuilder.Entity<UserGroup>()
-                .HasMany(c => c.Users)
-                .WithMany(s => s.UserGroups)
-                .UsingEntity(j => j.ToTable("usertousergroup"));
+                .HasIndex(cs => new { cs.UserId, cs.GroupId });
 
-            modelBuilder.Entity<Role>()
-                .HasMany(c => c.Users)
-                .WithMany(s => s.Roles)
-                .UsingEntity(j => j.ToTable("usertoroles"));
+            modelBuilder.Entity<UserRole>()
+                .HasIndex(cs => new { cs.UserId, cs.RoleId });
+
+            modelBuilder.Entity<UserGroup>()
+                .HasOne(u => u.User)
+                .WithMany(c => c.UserGroups)
+                .HasForeignKey(cs => new { cs.UserId })
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            modelBuilder.Entity<UserGroup>()
+                .HasOne(u => u.Group)
+                .WithMany(c => c.UserGroups)
+                .HasForeignKey(cs => new { cs.GroupId })
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(u => u.User)
+                .WithMany(c => c.UserRoles)
+                .HasForeignKey(cs => new { cs.UserId })
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(u => u.Role)
+                .WithMany(c => c.UserRoles)
+                .HasForeignKey(cs => new { cs.RoleId })
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
 
             modelBuilder.Entity<Role>()
                 .HasMany(u => u.Permissions)
-                .WithOne(c => c.Role )
+                .WithOne(c => c.Role)
                 .HasForeignKey(e => e.RoleId)
                 .IsRequired();
 
@@ -65,9 +102,7 @@ namespace Infrastructure.EntityFramework
             modelBuilder.Entity<User>().Property(c => c.MiddleName).HasMaxLength(256);
             modelBuilder.Entity<User>().Property(c => c.Department).HasMaxLength(512);
             modelBuilder.Entity<User>().Property(c => c.Email).HasMaxLength(256);
-
-            modelBuilder.Entity<UserGroup>().Property(c => c.Name).HasMaxLength(256);
-
+            modelBuilder.Entity<Group>().Property(c => c.Name).HasMaxLength(512);
             modelBuilder.Entity<Role>().Property(c => c.Name).HasMaxLength(256);
 
             modelBuilder.Entity<Permission>().Property(c => c.Name).HasMaxLength(256);
@@ -76,7 +111,10 @@ namespace Infrastructure.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);   
+            //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=userservice;UserId=postgres;Password=admin");
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         }
+
+
     }
 }

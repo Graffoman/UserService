@@ -26,7 +26,7 @@ namespace Services.Contracts.User
         /// <summary> Email. </summary>
         public string Email { get; set; }
 
-        /// <summary> Хэш пароля. </summary>
-        public string PasswordHash { get; set; }
+        /// <summary> Пароль </summary>
+        public string Password { get; set; }
     }
 }

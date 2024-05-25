@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Services.Contracts.User;
-using Services.Contracts.Role;
+using Services.Contracts.UserRole;
 using Services.Contracts.UserGroup;
 
 namespace Services.Abstractions
@@ -24,7 +24,7 @@ namespace Services.Abstractions
         /// <param name="email"> e-mail. </param>
         /// <param name="passwordhash"> хэш пароля. </param>
         /// <returns> ДТО пользователя. </returns>
-        Task<UserDto> GetByLoginPasswordAsync(string email, string passwordhash);
+        Task<UserDto> GetAsyncByEmailPassword(string email, string passwordhash);
 
         /// <summary>
         /// Создать пользователя.
@@ -51,51 +51,5 @@ namespace Services.Abstractions
         /// <param name="filterDto"> ДТО фильтра. </param>
         /// <returns> Список пользователей. </returns>
         Task<ICollection<UserDto>> GetPagedAsync(UserFilterDto filterDto);
-
-        /// <summary>
-        /// Назначить роль пользователю.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="roleId"> Иентификатор роли. </param>
-        /// <param name="settingUserToRoleDto"> ДТО добавления пользователя в роль. </param>
-        Task SetToRoleAsync(Guid id, Guid roleId, SettingUserToRoleDto settingUserToRoleDto);
-
-        /// <summary>
-        /// Удалить пользователя из роли.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="roleId"> Иентификатор роли. </param>
-        /// <param name="deletingUserFromRoleDto"> ДТО удаления пользователя из роли. </param>
-        Task DeleteFromRoleAsync(Guid id, Guid roleId, DeletingUserFromRoleDto deletingUserFromRoleDto);
-
-        /// <summary>
-        /// Назначить группу пользователю.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="userGroupId"> Иентификатор группы. </param>
-        /// <param name="settingUserToUserGroupDto"> ДТО добавления пользователя в группу. </param>
-        Task SetToUserGroupAsync(Guid id, Guid userGroupId, SettingUserToUserGroupDto settingUserToUserGroupDto);
-
-        /// <summary>
-        /// Удалить пользователя из роли.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="userGroupId"> Иентификатор группы. </param>
-        /// <param name="deletingUserFromUserGroupDto"> ДТО удаления пользователя из группы. </param>
-        Task DeleteFromUserGroupAsync(Guid id, Guid userGroupId, DeletingUserFromUserGroupDto deletingUserFromUserGroupDto);
-
-        /// <summary>
-        /// Получить список ролей пользователя.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <returns> Список ролй. </returns>
-        Task<ICollection<RoleDto>> GetUserRoles(Guid id);
-
-        /// <summary>
-        /// Получить список групп пользователя.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <returns> Список групп. </returns>
-        Task<ICollection<UpdatingUserGroupDto>> GetUserGroups(Guid id);
-    }
+        }
 }

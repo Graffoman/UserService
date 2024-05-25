@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Contracts.UserGroup
+namespace Services.Contracts.Group
 {
-    public class UpdatingUserGroupDto
+    public class UpdatingGroupDto
     {
         /// <summary>
         /// Наименование.

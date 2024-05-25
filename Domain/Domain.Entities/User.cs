@@ -36,12 +36,12 @@ namespace Domain.Entities
         /// <summary>
         /// Группы пользователей.
         /// </summary>
-        public virtual List<UserGroup>? UserGroups { get; set; }
+        public List<UserGroup> UserGroups { get; set; }
 
         /// <summary>
         /// Роли.
         /// </summary>       
-        public virtual List<Role>? Roles { get; set; }
+        public List<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Удалено.

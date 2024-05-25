@@ -4,7 +4,7 @@ using System;
 namespace Domain.Entities
 {
     /// <summary>
-    /// Роль.
+    /// Группа пользователей.
     /// </summary>
     public class UserGroup: IEntity<Guid>
     {
@@ -14,18 +14,26 @@ namespace Domain.Entities
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Наименование.
+        /// Идентификатор пользователя.
         /// </summary>
-        public string Name { get; set; }       
+        public Guid UserId { get; set; }
 
         /// <summary>
         /// Пользователи.
         /// </summary>
-        public virtual List<User>? Users { get; set; }
+        public User User { get; set; }
+
 
         /// <summary>
-        /// Удалено.
+        /// Идентификатор группы.
         /// </summary>
-        public bool Deleted { get; set; }
+        public Guid GroupId { get; set; }
+
+        /// <summary>
+        /// Пользователи.
+        /// </summary>
+        public Group Group { get; set; }
+
+
     }
 }

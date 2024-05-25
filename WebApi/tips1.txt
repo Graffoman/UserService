@@ -1,0 +1,9 @@
+
+
+dotnet ef dbcontext scaffold "Host=localhost;Port=5432;Database=userservice;UserId=postgres;Password=admin"
+
+dotnet ef migrations add InitialCreate --project Infrastructure\Infrastructure.EntityFramework --startup-project WebApi
+
+
+
+dotnet ef database update --project Infrastructure\Infrastructure.EntityFramework --startup-project WebApi

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Domain.Entities;
 using Services.Contracts.User;
+using Services.Contracts.UserGroup;
+using Services.Contracts.UserRole;
 
 namespace Services.Repositories.Abstractions
 {
@@ -16,5 +18,15 @@ namespace Services.Repositories.Abstractions
         /// <param name="filterDto"> ДТО фильтра. </param>
         /// <returns> Список пользователей. </returns>
         Task<List<User>> GetPagedAsync(UserFilterDto filterDto);
+
+        /// <summary>
+        /// Получить пользователя по Email, PasswordHash
+        /// </summary>
+        /// <param name="email"> Email пользователя. </param>
+        /// <param name="passwordHash"> Hash пароля пользователя</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns> Пользователь. </returns>
+        Task<User> GetAsyncByEmailPassword(string email, string passwordHash);
+
     }
 }

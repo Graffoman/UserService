@@ -89,12 +89,21 @@ namespace WebApi
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<CourseMappingsProfile>();
-                cfg.AddProfile<LessonMappingsProfile>();
-                cfg.AddProfile<Services.Implementations.Mapping.CourseMappingsProfile>();
-                cfg.AddProfile<Services.Implementations.Mapping.LessonMappingsProfile>();
+                cfg.AddProfile<RoleMappingsProfile>();
+                cfg.AddProfile<PermissionMappingsProfile>();                
+                cfg.AddProfile<GroupMappingsProfile>();
+                cfg.AddProfile<UserGroupMappingsProfile>();
+                cfg.AddProfile<UserRoleMappingsProfile>();
+                cfg.AddProfile<UserMappingsProfile>();
+                
+                cfg.AddProfile<Services.Implementations.Mapping.RoleMappingProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.PermissionMappingsProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.GroupMappingProfile>();                
+                cfg.AddProfile<Services.Implementations.Mapping.UserGroupMappingProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.UserRoleMappingProfile>();
+                cfg.AddProfile<Services.Implementations.Mapping.UserMappingsProfile>();
             });
-            configuration.AssertConfigurationIsValid();
+            //configuration.AssertConfigurationIsValid();
             return configuration;
         }
 

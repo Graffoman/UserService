@@ -1,21 +1,23 @@
-﻿using System;
+﻿using Services.Contracts.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Services.Contracts.UserGroup
 {
     public class CreatingUserGroupDto
     {
         /// <summary>
-        /// Идентификатор.
+        /// Идентификатор пользователя.
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
 
         /// <summary>
-        /// Наименование.
+        /// Идентификатор группы.
         /// </summary>
-        public string Name { get; set; }
+        public Guid GroupId { get; set; }
     }
 }

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Contracts.User
+namespace Services.Contracts.Group
 {
-    public class DeletingUserFromUserGroupDto
+    public class CreatingGroupDto
     {
         /// <summary>
-        /// Идентификатор пользователя.
+        /// Идентификатор.
         /// </summary>
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Идентификатор группы.
+        /// Наименование.
         /// </summary>
-        public Guid UserGroupId { get; set; }
+        public string Name { get; set; }
     }
 }

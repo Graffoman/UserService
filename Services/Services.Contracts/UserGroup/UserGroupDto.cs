@@ -4,24 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Services.Contracts.User;
+using Services.Contracts.Group;
 
 namespace Services.Contracts.UserGroup
 {
     public class UserGroupDto
     {
+
         /// <summary>
         /// Идентификатор.
         /// </summary>
         public Guid Id { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя.
+        /// </summary>
+        public Guid UserId { get; set; }
 
         /// <summary>
-        /// Наименование.
+        /// Пользователь.
         /// </summary>
-        public string Name { get; set; }
+        public UserDto User { get; set; }
+
 
         /// <summary>
-        /// Пользователи.
+        /// Идентификатор группы.
         /// </summary>
-        public virtual List<UserDto>? Users { get; set; }
+        public Guid GroupId { get; set; }
+
+        /// <summary>
+        /// Группа.
+        /// </summary>
+        public GroupDto Group { get; set; }
     }
 }

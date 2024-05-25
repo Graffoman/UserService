@@ -21,12 +21,12 @@ namespace Domain.Entities
         /// <summary>
         /// Права доступа.
         /// </summary>
-        public virtual List<Permission>? Permissions { get; set; }
+        public List<Permission> Permissions { get; set; }
 
         /// <summary>
         /// Пользователи.
         /// </summary>
-        public virtual List<User>? Users { get; set; }
+        public List<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Удалено.

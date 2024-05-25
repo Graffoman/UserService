@@ -23,10 +23,15 @@ namespace Services.Contracts.Permission
         /// <summary> Описание. </summary>
         public string? Description { get; set; }
 
-        /// <summary> Роль. </summary>
-        public RoleDto Role { get; set; }
-
         /// <summary>ID роли. </summary>
         public Guid RoleId { get; set; }
+
+        /// <summary> Роль. </summary>
+        public RoleDto Role { get; set; }        
+
+        /// <summary>
+        /// Удалено.
+        /// </summary>
+        public bool Deleted { get; set; }
     }
 }

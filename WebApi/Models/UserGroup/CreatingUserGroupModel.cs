@@ -1,21 +1,23 @@
-﻿using System;
+﻿using Services.Contracts.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Contracts.User
+
+namespace WebApi.Models.UserGroup
 {
-    public class SettingUserToRoleDto
+    public class CreatingUserGroupModel
     {
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
 
         /// <summary>
-        /// Идентификатор роли.
+        /// Идентификатор группы.
         /// </summary>
-        public Guid RoleId { get; set; }
+        public Guid GroupId { get; set; }
     }
 }

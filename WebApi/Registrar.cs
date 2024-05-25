@@ -28,16 +28,16 @@ namespace WebApi
         private static IServiceCollection InstallServices(this IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddTransient<IUserService, CourseService>()
-                .AddTransient<IPermissionService, LessonService>();
+                .AddTransient<IUserService, UserService>();
+                //.AddTransient<IPermissionService, LessonService>();
             return serviceCollection;
         }
         
         private static IServiceCollection InstallRepositories(this IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddTransient<IUserRepository, CourseRepository>()
-                .AddTransient<IUserGroupRepository, LessonRepository>();
+                .AddTransient<IUserRepository, UserRepository>();
+                //.AddTransient<IUserGroupRepository, LessonRepository>();
             return serviceCollection;
         }
     }

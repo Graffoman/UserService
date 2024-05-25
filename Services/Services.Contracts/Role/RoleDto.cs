@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using Services.Contracts.Permission;
+using Services.Contracts.UserRole;
 
 namespace Services.Contracts.Role
 {
@@ -22,7 +23,17 @@ namespace Services.Contracts.Role
         /// <summary>
         /// Права доступа.
         /// </summary>
-        public List<PermissionDto>? Permissions { get; set; }
+        public List<PermissionDto> Permissions { get; set; }
+
+        /// <summary>
+        /// Роли пользователей.
+        /// </summary>
+        public List<UserRoleDto> UserRoles { get; set; }
+
+        /// <summary>
+        /// Удалено.
+        /// </summary>
+        public bool Deleted { get; set; }
 
     }
 }

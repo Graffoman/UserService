@@ -3,42 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Services.Contracts.Role;
 using Services.Contracts.UserGroup;
 
 namespace Services.Abstractions
 {
     /// <summary>
-    /// Интерфейс сервиса работы группами пользователей.
+    /// Интерфейс сервиса работы с группами пользователя.
     /// </summary>
     public interface IUserGroupService
     {
         /// <summary>
-        /// Получить группу пользователей. 
+        /// Получить группу пользователя. 
         /// </summary>
-        /// <param name="id"> Идентификатор. </param>
+        /// <param name="id"> Идентификатор </param>
         /// <param name="cancellationToken"> Токен отмены </param>
-        /// <returns> ДТО группы пользователей. </returns>
-        Task<UserGroupDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        /// <returns>ДТО группы пользователей</returns>
+        Task<UserGroupDto> GetByIdAsync(Guid id, Guid groupId, CancellationToken cancellationToken);
 
         /// <summary>
         /// Создать группу пользователей.
         /// </summary>
-        /// <param name="creatingUserGroupDto"> ДТО группы пользователей. </param>
+        /// <param name="creatingUserGroupDto"> ДТО группы пользователя. </param>
         /// <returns> Идентификатор. </returns>
         Task<Guid> CreateAsync(CreatingUserGroupDto creatingUserGroupDto);
 
         /// <summary>
-        /// Изменить группу пользователей.
+        /// Удалить группу пользователя.
         /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="updatingUserGroupDto"> ДТО группы пользователей. </param>
-        Task UpdateAsync(Guid id, UpdatingUserGroupDto updatingUserGroupDto);
-
-        /// <summary>
-        /// Удалить группу пользователей.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        Task DeleteAsync(Guid id);
+        /// <param name="id"> Идентификатор </param>
+        Task DeleteAsync(Guid id, Guid groupId);
     }
 }
+

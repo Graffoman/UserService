@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
-using Services.Contracts.UserGroup;
 using Services.Contracts.Role;
+using Services.Contracts.Group;
+using Services.Contracts.UserGroup;
+using Services.Contracts.UserRole;
 
 namespace Services.Contracts.User
 {
@@ -38,12 +40,17 @@ namespace Services.Contracts.User
         /// <summary>
         /// Группы пользователей.
         /// </summary>
-        public virtual List<UserGroupDto>? UserGroups { get; set; }
+        public List<UserGroupDto> UserGroups { get; set; }
 
         /// <summary>
-        /// Роли.
+        /// Роли пользователей.
         /// </summary>       
-        public virtual List<RoleDto>? Roles { get; set; }
+        public List<UserRoleDto> UserRoles { get; set; }
+
+        /// <summary>
+        /// Удалено.
+        /// </summary>
+        public bool Deleted { get; set; }
 
     }
 }
