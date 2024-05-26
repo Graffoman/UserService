@@ -34,11 +34,9 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.Repositories.Implementations\Infrastructure.Repositories.Implementations.csproj" />
     <ProjectReference Include="..\Services\Services.Abstractions\Services.Abstractions.csproj" />
     <ProjectReference Include="..\Services\Services.Implementations\Services.Implementations.csproj" />
-    <ProjectReference Include="..\Services\Services.Repositories.Abstractions\Services.Repositories.Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Settings\" />
   </ItemGroup>
 

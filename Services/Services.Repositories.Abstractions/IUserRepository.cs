@@ -28,5 +28,11 @@ namespace Services.Repositories.Abstractions
         /// <returns> Пользователь. </returns>
         Task<User> GetAsyncByEmailPassword(string email, string passwordHash);
 
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список пользователей. </returns>
+        Task<List<User>> GetListAsync();
+
     }
 }

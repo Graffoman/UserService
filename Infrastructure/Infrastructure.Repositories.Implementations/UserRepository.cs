@@ -29,9 +29,9 @@ namespace Infrastructure.Repositories.Implementations
         /// <returns> Пользователь. </returns>
         public override async Task<User> GetAsync(Guid id, CancellationToken cancellationToken)
         {
-            var query = Context.Set<User>().AsQueryable()
-                .Include(c => c.UserGroups).AsQueryable()
-                .Include(c => c.UserRoles).AsQueryable();
+            var query = Context.Set<User>().AsQueryable();
+                //.Include(c => c.UserGroups).AsQueryable()
+                //.Include(c => c.UserRoles).AsQueryable();
             return await query.SingleOrDefaultAsync(c => c.Id == id);
         }
 
@@ -77,6 +77,16 @@ namespace Infrastructure.Repositories.Implementations
                 .Skip((filterDto.Page - 1) * filterDto.ItemsPerPage)
                 .Take(filterDto.ItemsPerPage);
 
+            return await query.ToListAsync();
+        }
+
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список пользователей. </returns>
+        public async Task<List<User>> GetListAsync()
+        {
+            var query = GetAll();
             return await query.ToListAsync();
         }
 

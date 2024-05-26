@@ -50,6 +50,12 @@ namespace Services.Abstractions
         /// </summary>
         /// <param name="filterDto"> ДТО фильтра. </param>
         /// <returns> Список пользователей. </returns>
-        Task<ICollection<UserDto>> GetPagedAsync(UserFilterDto filterDto);
-        }
+        Task<ICollection<UserDto>> GetPagedAsync(UserFilterDto filterDto);        
+
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список пользователей. </returns>
+        Task<ICollection<UserDto>> GetListAsync();
+    }
 }

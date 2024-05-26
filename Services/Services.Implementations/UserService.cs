@@ -150,6 +150,16 @@ namespace Services.Implementations
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
         }
 
-     }
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список пользователей. </returns>
+        public async Task<ICollection<UserDto>> GetListAsync()
+        {
+            ICollection<User> entities = await _userRepository.GetListAsync();
+            return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
+        }
+
+    }
 
 }
