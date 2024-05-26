@@ -22,11 +22,9 @@ namespace Services.Repositories.Abstractions
         /// <summary>
         /// Получить пользователя по Email, PasswordHash
         /// </summary>
-        /// <param name="email"> Email пользователя. </param>
-        /// <param name="passwordHash"> Hash пароля пользователя</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="userSigningInDto"> ДТО логина. </param>       
         /// <returns> Пользователь. </returns>
-        Task<User> GetAsyncByEmailPassword(string email, string passwordHash);
+        Task<User> Login(UserLoginDto userLoginDto, string PasswordHash);
 
         /// <summary>
         /// Получить полный список.

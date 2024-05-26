@@ -15,6 +15,7 @@ namespace WebApi.Mapping
             CreateMap<CreatingUserModel, CreatingUserDto>();
             CreateMap<UpdatingUserModel, UpdatingUserDto>();
             CreateMap<UserFilterModel, UserFilterDto>();
+            CreateMap<UserLoginModel, UserLoginDto>();
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Services.Contracts.User;
 using Services.Contracts.UserGroup;
 using Services.Contracts.UserRole;
+using System.Security.Cryptography;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -42,13 +43,13 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="passwordHash"> Hash пароля пользователя</param>
         /// <param name="cancellationToken"></param>
         /// <returns> Пользователь. </returns>
-        public async Task<User> GetAsyncByEmailPassword(string email, string passwordHash)
+        public async Task<User> Login(UserLoginDto userLoginDto, string PasswordHash)
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
 
-            query = query.Where(c => c.Email == email);
-            query = query.Where(c => c.PasswordHash == passwordHash);
+            query = query.Where(c => c.Email == userLoginDto.Email);
+            //query = query.Where(c => c.PasswordHash == PasswordHash);
                         
             return await query.SingleOrDefaultAsync();
         }
@@ -86,7 +87,8 @@ namespace Infrastructure.Repositories.Implementations
         /// <returns> Список пользователей. </returns>
         public async Task<List<User>> GetListAsync()
         {
-            var query = GetAll();
+            var query = GetAll()
+                .Where(c => !c.Deleted);
             return await query.ToListAsync();
         }
 

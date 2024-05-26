@@ -21,10 +21,9 @@ namespace Services.Abstractions
         /// <summary>
         /// Получить пользователя по e-mail и паролю.
         /// </summary>
-        /// <param name="email"> e-mail. </param>
-        /// <param name="passwordhash"> хэш пароля. </param>
+        /// <param name="userLoginDto"> Дто логина пользователя </param>        
         /// <returns> ДТО пользователя. </returns>
-        Task<UserDto> GetAsyncByEmailPassword(string email, string passwordhash);
+        Task<UserDto> Login(UserLoginDto userLoginDto);
 
         /// <summary>
         /// Создать пользователя.

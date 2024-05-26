@@ -73,13 +73,12 @@ namespace Services.Implementations
         /// <summary>
         /// Получить пользователя по e-mail и паролю.
         /// </summary>
-        /// <param name="email"> e-mail. </param>
-        /// <param name="password"> Пароль. </param>
+        /// <param name="userLoginDto"> ДТО логина пользователя </param>
         /// <returns> ДТО пользователя. </returns>
-        public async Task<UserDto> GetAsyncByEmailPassword(string email, string password)
-        {
-            string passwordhash = HashPassword(password);
-            var user = await _userRepository.GetAsyncByEmailPassword(email, passwordhash);
+        public async Task<UserDto> Login(UserLoginDto userLoginDto)
+        {            
+            string PasswordHash = HashPassword(userLoginDto.Password);
+            var user = await _userRepository.Login(userLoginDto, PasswordHash);
             return _mapper.Map<User, UserDto>(user);
         }
 
@@ -121,7 +120,7 @@ namespace Services.Implementations
             user.MiddleName = updatingUserDto.MiddleName;
             user.BirthdayDate = updatingUserDto.BirthdayDate;
             user.Department = updatingUserDto.Department;
-            user.Email = updatingUserDto.Email;
+            user.Email = updatingUserDto.Email;            
             user.PasswordHash = HashPassword(updatingUserDto.Password);
 
             _userRepository.Update(user);

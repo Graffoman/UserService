@@ -59,10 +59,11 @@ namespace WebApi.Controllers
             return Ok(_mapper.Map<List<UserModel>>(await _service.GetPagedAsync(filterDto)));
         }
 
-        [HttpGet("{Email},{Password}")]
-        public async Task<IActionResult> GetAsyncByEmailPassword(string Email, string Password)
+        [HttpPost("login")]
+        public async Task<IActionResult> GetAsyncByEmailPassword(UserLoginModel userLoginModel)
         {
-            return Ok(_mapper.Map<UserModel>(await _service.GetAsyncByEmailPassword(Email,Password)));
+
+            return Ok(_mapper.Map<UserModel>(await _service.Login(_mapper.Map<UserLoginModel, UserLoginDto>(userLoginModel))));
         }
 
         [HttpPost("list")]
