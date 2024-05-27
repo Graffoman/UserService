@@ -96,7 +96,7 @@ namespace Services.Implementations
             /*
             await _busControl.Publish(new MessageDto
             {
-                Content = $"Course {createdCourse.Id} with name {createdCourse.Name} is added"
+                Content = $"User {createdUser.Id} with name {createdUser.Name} is added"
             });
             */
             return createdUser.Id;
@@ -134,6 +134,10 @@ namespace Services.Implementations
         public async Task DeleteAsync(Guid id)
         {
             var user = await _userRepository.GetAsync(id, CancellationToken.None);
+            if (user == null)
+            {
+                throw new Exception($"Пользователь с идентфикатором {id} не найден");
+            }
             user.Deleted = true;
             await _userRepository.SaveChangesAsync();
         }

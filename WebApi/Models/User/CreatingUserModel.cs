@@ -8,11 +8,6 @@ namespace WebApi.Models.User
 {
     public class CreatingUserModel
     {
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
-
         /// <summary> Имя. </summary>
         public string Name { get; set; }
 

@@ -10,7 +10,12 @@ namespace Services.Repositories.Abstractions
     /// <summary>
     /// Репозиторий работы группами.
     /// </summary>
-    public interface IGroupReposotory : IRepository<Role, Guid>
+    public interface IGroupReposotory : IRepository<Group, Guid>
     {
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список групп. </returns>
+        Task<List<Group>> GetListAsync();
     }
 }

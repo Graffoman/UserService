@@ -12,8 +12,10 @@ namespace WebApi.Mapping
         public GroupMappingsProfile()
         {
             CreateMap<GroupDto, GroupModel>();
-            CreateMap<CreatingGroupDto, CreatingGroupModel>();
-            CreateMap<UpdatingGroupDto, UpdatingGroupModel>();           
+            //CreateMap<CreatingGroupDto, CreatingGroupModel>();
+            //CreateMap<UpdatingGroupDto, UpdatingGroupModel>();
+            CreateMap<CreatingGroupModel, CreatingGroupDto>();
+            CreateMap<UpdatingGroupModel, UpdatingGroupDto>();
         }
     }
 }

@@ -8,10 +8,6 @@ namespace Services.Contracts.Group
 {
     public class CreatingGroupDto
     {
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
 
         /// <summary>
         /// Наименование.

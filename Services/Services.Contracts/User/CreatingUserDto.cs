@@ -8,10 +8,6 @@ namespace Services.Contracts.User
 {
     public class CreatingUserDto
     {
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
 
         /// <summary> Имя. </summary>
         public string Name { get; set; }

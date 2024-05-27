@@ -1,4 +1,5 @@
 ﻿using Services.Contracts.Group;
+using Services.Contracts.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,9 @@ namespace Services.Abstractions
         /// <summary>
         /// Получить группу. 
         /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="cancellationToken"> Токен отмены </param>
+        /// <param name="id"> Идентификатор. </param>       
         /// <returns> ДТО группы. </returns>
-        Task<GroupDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<GroupDto> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Создать группу.
@@ -39,5 +39,11 @@ namespace Services.Abstractions
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         Task DeleteAsync(Guid id);
+
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список групп. </returns>
+        Task<ICollection<GroupDto>> GetListAsync();
     }
 }
