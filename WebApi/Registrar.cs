@@ -29,7 +29,8 @@ namespace WebApi
         {
             serviceCollection
                 .AddTransient<IUserService, UserService>()
-                .AddTransient<IGroupService, GroupService>();
+                .AddTransient<IGroupService, GroupService>()
+                .AddTransient<IUserGroupService, UserGroupService>();
             return serviceCollection;
         }
         
@@ -37,7 +38,8 @@ namespace WebApi
         {
             serviceCollection
                 .AddTransient<IUserRepository, UserRepository>()
-                .AddTransient<IGroupReposotory, GroupRepository>();
+                .AddTransient<IGroupReposotory, GroupRepository>()
+                .AddTransient<IUserGroupRepository, UserGroupRepository>();
             return serviceCollection;
         }
     }

@@ -15,7 +15,7 @@ namespace Services.Implementations.Mapping
     public class RoleMappingProfile : Profile
     {
         public RoleMappingProfile() {
-            CreateMap<RoleDto, Role>();
+            CreateMap<Role, RoleDto>();
 
             CreateMap<CreatingRoleDto, Role>()
                 .ForMember(d => d.Id, map => map.Ignore())

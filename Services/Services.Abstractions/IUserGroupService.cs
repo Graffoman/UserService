@@ -12,26 +12,18 @@ namespace Services.Abstractions
     /// </summary>
     public interface IUserGroupService
     {
-        /// <summary>
-        /// Получить группу пользователя. 
-        /// </summary>
-        /// <param name="id"> Идентификатор </param>
-        /// <param name="cancellationToken"> Токен отмены </param>
-        /// <returns>ДТО группы пользователей</returns>
-        Task<UserGroupDto> GetByIdAsync(Guid id, Guid groupId, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Создать группу пользователей.
+        /// Добавить пользователя в группу.
         /// </summary>
-        /// <param name="creatingUserGroupDto"> ДТО группы пользователя. </param>
-        /// <returns> Идентификатор. </returns>
-        Task<Guid> CreateAsync(CreatingUserGroupDto creatingUserGroupDto);
+        /// <param name="creatingUserGroupDto"> ДТО добавления пользоватьеля в группу. </param>
+        Task<Guid> AddUserToGroupAsync(CreatingUserGroupDto creatingUserGroupDto);
 
         /// <summary>
-        /// Удалить группу пользователя.
+        /// Удалить пользователя из группы.
         /// </summary>
-        /// <param name="id"> Идентификатор </param>
-        Task DeleteAsync(Guid id, Guid groupId);
+        /// <param name="creatingUserGroupDto"> ДТО добавления пользоватьеля в группу. </param>
+        Task DeleteUserFromGroupAsync(CreatingUserGroupDto creatingUserGroupDto);
     }
 }
 

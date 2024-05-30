@@ -16,7 +16,7 @@ namespace Services.Implementations.Mapping
     {
         public UserRoleMappingProfile()
         {
-            CreateMap<UserRoleDto, UserRole>();
+            CreateMap<UserRole, UserRoleDto>();
 
             CreateMap<CreatingUserRoleDto, UserRoleDto>()
                 .ForMember(d => d.Id, map => map.Ignore())

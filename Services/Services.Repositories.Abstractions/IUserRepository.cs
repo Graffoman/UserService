@@ -24,7 +24,7 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <param name="userSigningInDto"> ДТО логина. </param>       
         /// <returns> Пользователь. </returns>
-        Task<User> Login(UserLoginDto userLoginDto, string PasswordHash);
+        Task<User> LoginAsync(UserLoginDto userLoginDto, string PasswordHash);
 
         /// <summary>
         /// Получить полный список.

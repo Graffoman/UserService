@@ -12,6 +12,7 @@ using Services.Contracts.User;
 using static MassTransit.Logging.OperationName;
 using System.Security.Cryptography;
 using Services.Contracts.UserRole;
+using System.Text;
 
 namespace Services.Implementations
 {
@@ -38,25 +39,12 @@ namespace Services.Implementations
         /// <summary>
         /// Функция хэширования
         /// </summary>
-        /// <param name="password> Пароль. </param>
+        /// <param name="input> Текст, для которого вычисляется хэш </param>
         /// <returns> Хэш пароля. </returns>
-        public static string HashPassword(string password)
+        public static string CreateSHA256(string input)
         {
-            byte[] salt;
-            byte[] buffer2;
-            if (password == null)
-            {
-                throw new ArgumentNullException("password");
-            }
-            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
-            {
-                salt = bytes.Salt;
-                buffer2 = bytes.GetBytes(0x20);
-            }
-            byte[] dst = new byte[0x31];
-            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
-            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
-            return Convert.ToBase64String(dst);
+            using SHA256 hash = SHA256.Create();
+            return Convert.ToHexString(hash.ComputeHash(Encoding.UTF8.GetBytes(input)));
         }
 
         /// <summary>
@@ -76,9 +64,9 @@ namespace Services.Implementations
         /// <param name="userLoginDto"> ДТО логина пользователя </param>
         /// <returns> ДТО пользователя. </returns>
         public async Task<UserDto> Login(UserLoginDto userLoginDto)
-        {            
-            string PasswordHash = HashPassword(userLoginDto.Password);
-            var user = await _userRepository.Login(userLoginDto, PasswordHash);
+        {
+            string PasswordHash = CreateSHA256(userLoginDto.Password);
+            var user = await _userRepository.LoginAsync(userLoginDto, PasswordHash);
             return _mapper.Map<User, UserDto>(user);
         }
 
@@ -90,7 +78,7 @@ namespace Services.Implementations
         {
             var user = _mapper.Map<CreatingUserDto, User>(creatingUserDto);
             user.Id = Guid.NewGuid();
-            user.PasswordHash = HashPassword(creatingUserDto.Password);
+            user.PasswordHash = CreateSHA256(creatingUserDto.Password);
             var createdUser = await _userRepository.AddAsync(user);
             await _userRepository.SaveChangesAsync();
             /*
@@ -120,8 +108,8 @@ namespace Services.Implementations
             user.MiddleName = updatingUserDto.MiddleName;
             user.BirthdayDate = updatingUserDto.BirthdayDate;
             user.Department = updatingUserDto.Department;
-            user.Email = updatingUserDto.Email;            
-            user.PasswordHash = HashPassword(updatingUserDto.Password);
+            user.Email = updatingUserDto.Email;
+            user.PasswordHash = CreateSHA256(updatingUserDto.Password);
 
             _userRepository.Update(user);
             await _userRepository.SaveChangesAsync();

@@ -43,13 +43,13 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="passwordHash"> Hash пароля пользователя</param>
         /// <param name="cancellationToken"></param>
         /// <returns> Пользователь. </returns>
-        public async Task<User> Login(UserLoginDto userLoginDto, string PasswordHash)
+        public async Task<User> LoginAsync(UserLoginDto userLoginDto, string PasswordHash)
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
 
             query = query.Where(c => c.Email == userLoginDto.Email);
-            //query = query.Where(c => c.PasswordHash == PasswordHash);
+            query = query.Where(c => c.PasswordHash == PasswordHash);
                         
             return await query.SingleOrDefaultAsync();
         }

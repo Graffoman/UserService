@@ -103,7 +103,7 @@ namespace WebApi
                 cfg.AddProfile<Services.Implementations.Mapping.UserRoleMappingProfile>();
                 cfg.AddProfile<Services.Implementations.Mapping.UserMappingsProfile>();
             });
-            //configuration.AssertConfigurationIsValid();
+            configuration.AssertConfigurationIsValid();
             return configuration;
         }
 

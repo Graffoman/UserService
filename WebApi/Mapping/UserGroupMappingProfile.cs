@@ -12,7 +12,7 @@ namespace WebApi.Mapping
         public UserGroupMappingsProfile()
         {
             CreateMap<UserGroupDto, UserGroupModel>();
-            CreateMap<CreatingUserGroupDto, CreatingUserGroupModel>();           
+            CreateMap<CreatingUserGroupModel, CreatingUserGroupDto>();           
         }
 
     }
