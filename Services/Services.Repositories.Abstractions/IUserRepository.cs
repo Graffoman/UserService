@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Domain.Entities;
 using Services.Contracts.User;
+using Services.Contracts.Group;
 using Services.Contracts.UserGroup;
 using Services.Contracts.UserRole;
 
@@ -31,6 +32,13 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <returns> Список пользователей. </returns>
         Task<List<User>> GetListAsync();
+
+        /// <summary>
+        /// Получить список групп пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список групп. </returns>
+        Task<List<Group>> GetGroupListAsync(Guid id);
 
     }
 }

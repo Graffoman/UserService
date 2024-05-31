@@ -107,6 +107,17 @@ namespace Services.Implementations
             return _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(entities);
         }
 
+        /// <summary>
+        /// Получить список пользователей группы.
+        /// </summary>
+        /// <param name="id"> Идентификатор группы</param>
+        /// <returns> Список  пользователей. </returns>
+        public async Task<ICollection<UserDto>> GetUserListAsync(Guid id)
+        {
+            ICollection<User> entities = await _groupRepository.GetUserListAsync(id);
+            return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
+        }
+
     }
 
 }

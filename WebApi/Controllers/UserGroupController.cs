@@ -22,13 +22,13 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("addUserToGroupAsync")]
+        [HttpPost("addusertogroup")]
         public async Task<IActionResult> AddUserToGroupAsync(CreatingUserGroupModel userGroupModel)
         {
             return Ok(await _service.AddUserToGroupAsync(_mapper.Map<CreatingUserGroupDto>(userGroupModel)));
         }
 
-        [HttpPost("deleteUserFromGroupAsync")]
+        [HttpPost("deleteuserfromgroup")]
         public async Task<IActionResult> DeleteUserFromGroupAsync(CreatingUserGroupModel userGroupModel)
         {
             await _service.DeleteUserFromGroupAsync(_mapper.Map<CreatingUserGroupDto>(userGroupModel));

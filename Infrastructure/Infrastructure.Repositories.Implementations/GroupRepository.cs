@@ -40,5 +40,25 @@ namespace Infrastructure.Repositories.Implementations
             return await query.ToListAsync();
         }
 
+        /// <summary>
+        /// Получить список пользователей группы.
+        /// </summary>
+        /// <param name="id"> Идентификатор группы. </param>
+        /// <returns> Список групп. </returns>
+        public async Task<List<User>> GetUserListAsync(Guid id)
+        {
+            var users = Context.Set<User>().AsQueryable()
+                            .Where(c => !c.Deleted);
+            var usergroups = Context.Set<UserGroup>().AsQueryable()
+                            .Where(c => c.GroupId == id);
+
+            List<Guid> userSearchListIds = usergroups.Select(x => x.UserId).ToList();
+
+            users = users.Where(x => userSearchListIds.Contains(x.Id));
+
+            return await users.ToListAsync();
+        }
     }
+
 }
+

@@ -45,5 +45,12 @@ namespace Services.Abstractions
         /// </summary>
         /// <returns> Список групп. </returns>
         Task<ICollection<GroupDto>> GetListAsync();
+
+        /// <summary>
+        /// Получить список пользователей группы.
+        /// </summary>
+        /// <param name="id"> Идентификатор группы </param>
+        /// <returns> Список пользователей. </returns>
+        Task<ICollection<UserDto>> GetUserListAsync(Guid id);
     }
 }

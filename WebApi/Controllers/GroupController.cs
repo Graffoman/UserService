@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Services.Contracts.Group;
 using WebApi.Models.Group;
-
+using WebApi.Models.User;
 
 namespace WebApi.Controllers
 {
@@ -53,6 +53,12 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetListAsync()
         {
             return Ok(_mapper.Map<List<GroupModel>>(await _service.GetListAsync()));
+        }
+
+        [HttpPost("userlist")]
+        public async Task<IActionResult> GetUserListAsync(Guid id)
+        {
+            return Ok(_mapper.Map<List<UserModel>>(await _service.GetUserListAsync(id)));
         }
     }
 }

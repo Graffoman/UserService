@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Services.Contracts.User;
-using Services.Contracts.UserRole;
-using Services.Contracts.UserGroup;
+using Services.Contracts.Group;
 
 namespace Services.Abstractions
 {
@@ -56,5 +55,12 @@ namespace Services.Abstractions
         /// </summary>
         /// <returns> Список пользователей. </returns>
         Task<ICollection<UserDto>> GetListAsync();
+
+        /// <summary>
+        /// Получить список групп пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список групп  пользователя. </returns>
+        Task<ICollection<GroupDto>> GetGroupListAsync(Guid id);
     }
 }

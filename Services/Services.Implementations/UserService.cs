@@ -13,6 +13,7 @@ using static MassTransit.Logging.OperationName;
 using System.Security.Cryptography;
 using Services.Contracts.UserRole;
 using System.Text;
+using Services.Contracts.Group;
 
 namespace Services.Implementations
 {
@@ -149,6 +150,17 @@ namespace Services.Implementations
         {
             ICollection<User> entities = await _userRepository.GetListAsync();
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
+        }
+
+        /// <summary>
+        /// Получить список групп пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список групп  пользователя. </returns>
+        public async Task<ICollection<GroupDto>> GetGroupListAsync(Guid id)
+        {
+            ICollection<Group> entities = await _userRepository.GetGroupListAsync(id);
+            return _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(entities);
         }
 
     }

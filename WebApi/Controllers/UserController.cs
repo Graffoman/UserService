@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Contracts.User;
 using WebApi.Models.User;
+using WebApi.Models.Group;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace WebApi.Controllers
@@ -70,6 +71,12 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetListAsync()
         {            
             return Ok(_mapper.Map<List<UserModel>>(await _service.GetListAsync()));
+        }
+
+        [HttpPost("grouplist")]
+        public async Task<IActionResult> GetGroupListAsync(Guid id)
+        {
+            return Ok(_mapper.Map<List<GroupModel>>(await _service.GetGroupListAsync(id)));
         }
     }
 }

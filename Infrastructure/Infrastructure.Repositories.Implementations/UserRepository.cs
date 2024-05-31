@@ -7,9 +7,10 @@ using Domain.Entities;
 using Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts.User;
-using Services.Contracts.UserGroup;
-using Services.Contracts.UserRole;
+using Services.Contracts.Group;
+using Services.Contracts.Role;
 using System.Security.Cryptography;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -31,8 +32,8 @@ namespace Infrastructure.Repositories.Implementations
         public override async Task<User> GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<User>().AsQueryable();
-                //.Include(c => c.UserGroups).AsQueryable()
-                //.Include(c => c.UserRoles).AsQueryable();
+            //.Include(c => c.UserGroups).AsQueryable()
+            //.Include(c => c.UserRoles).AsQueryable();
             return await query.SingleOrDefaultAsync(c => c.Id == id);
         }
 
@@ -50,7 +51,7 @@ namespace Infrastructure.Repositories.Implementations
 
             query = query.Where(c => c.Email == userLoginDto.Email);
             query = query.Where(c => c.PasswordHash == PasswordHash);
-                        
+
             return await query.SingleOrDefaultAsync();
         }
 
@@ -92,6 +93,24 @@ namespace Infrastructure.Repositories.Implementations
             return await query.ToListAsync();
         }
 
+        /// <summary>
+        /// Получить список групп пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список групп. </returns>
+        public async Task<List<Group>> GetGroupListAsync(Guid id)
+        {
+            var groups = Context.Set<Group>().AsQueryable()
+                            .Where(c => !c.Deleted);
+            var usergroups = Context.Set<UserGroup>().AsQueryable()
+                            .Where(c => c.UserId == id);
+
+            List<Guid> groupSearchListIds = usergroups.Select(x => x.GroupId).ToList();
+
+            groups = groups.Where(x => groupSearchListIds.Contains(x.Id));
+
+            return await groups.ToListAsync();
+         }
     }
     
 }
