@@ -19,15 +19,6 @@ namespace WebApi.Models.Role
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// Права доступа.
-        /// </summary>
-        public List<PermissionModel> Permissions { get; set; }
-
-        /// <summary>
-        /// Роли пользователей.
-        /// </summary>
-        public List<UserRoleDto> UserRoles { get; set; }
 
         /// <summary>
         /// Удалено.

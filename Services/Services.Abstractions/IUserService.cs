@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Services.Contracts.User;
 using Services.Contracts.Group;
+using Services.Contracts.Role;
 
 namespace Services.Abstractions
 {
@@ -60,7 +61,14 @@ namespace Services.Abstractions
         /// Получить список групп пользователя.
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
-        /// <returns> Список групп  пользователя. </returns>
+        /// <returns> Список групп пользователя. </returns>
         Task<ICollection<GroupDto>> GetGroupListAsync(Guid id);
+
+        /// <summary>
+        /// Получить список ролей пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список ролей пользователя. </returns>
+        Task<ICollection<RoleDto>> GetRoleListAsync(Guid id);
     }
 }

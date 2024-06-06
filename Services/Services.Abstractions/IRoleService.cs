@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Services.Contracts.Group;
 using Services.Contracts.Role;
+using Services.Contracts.User;
 
 namespace Services.Abstractions
 {
@@ -46,6 +47,13 @@ namespace Services.Abstractions
         /// </summary>
         /// <returns> Список ролей. </returns>
         Task<ICollection<RoleDto>> GetListAsync();
+
+        /// <summary>
+        /// Получить список пользователей с ролью.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли </param>
+        /// <returns> Список пользователей. </returns>
+        Task<ICollection<UserDto>> GetUserListAsync(Guid id);
 
     }
 }

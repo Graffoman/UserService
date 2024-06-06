@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using WebApi.Models.UserGroup;
-using WebApi.Models.UserRole;
+using WebApi.Models.Group;
+using WebApi.Models.Role;
 
 namespace WebApi.Models.User
 {
@@ -32,18 +32,15 @@ namespace WebApi.Models.User
         /// <summary> Email. </summary>
         public string Email { get; set; }
 
-        /// <summary> Хэш пароля. </summary>
-        public string PasswordHash { get; set; }
-
         /// <summary>
         /// Группы пользователей.
         /// </summary>
-        public List<UserGroupModel> UserGroups { get; set; }
+        public List<GroupModel> Groups { get; set; }
 
         /// <summary>
         /// Роли пользователей.
         /// </summary>       
-        public List<UserRoleModel> UserRoles { get; set; }
+        public List<RoleModel> Roles { get; set; }
 
         /// <summary>
         /// Удалено.

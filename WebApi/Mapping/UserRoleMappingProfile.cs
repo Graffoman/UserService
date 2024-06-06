@@ -12,7 +12,7 @@ namespace WebApi.Mapping
         public UserRoleMappingsProfile()
         {
             CreateMap<UserRoleDto, UserRoleModel>();
-            CreateMap<CreatingUserRoleDto, CreatingUserRoleModel>();
+            CreateMap<CreatingUserRoleModel, CreatingUserRoleDto>();
         }
 
     }

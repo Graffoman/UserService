@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using Services.Contracts.UserRole;
 using System.Text;
 using Services.Contracts.Group;
+using Services.Contracts.Role;
 
 namespace Services.Implementations
 {
@@ -56,7 +57,15 @@ namespace Services.Implementations
         public async Task<UserDto> GetByIdAsync(Guid id)
         {
             var user = await _userRepository.GetAsync(id, CancellationToken.None);
-            return _mapper.Map<User, UserDto>(user);
+
+            UserDto userdto = _mapper.Map<User, UserDto>(user);
+            ICollection<Role> roleentities = await _userRepository.GetRoleListAsync(id);
+            userdto.Roles = _mapper.Map<ICollection<Role>, ICollection<RoleDto>>(roleentities).ToList();
+
+            ICollection<Group> groupentities = await _userRepository.GetGroupListAsync(id);
+            userdto.Groups = _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(groupentities).ToList();
+
+            return userdto;
         }
 
         /// <summary>
@@ -163,6 +172,16 @@ namespace Services.Implementations
             return _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(entities);
         }
 
+        /// <summary>
+        /// Получить список ролей пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список ролей пользователя. </returns>
+        public async Task<ICollection<RoleDto>> GetRoleListAsync(Guid id)
+        {
+            ICollection<Role> entities = await _userRepository.GetRoleListAsync(id);
+            return _mapper.Map<ICollection<Role>, ICollection<RoleDto>>(entities);
+        }
     }
 
 }

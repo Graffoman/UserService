@@ -32,8 +32,6 @@ namespace Infrastructure.Repositories.Implementations
         public override async Task<User> GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<User>().AsQueryable();
-            //.Include(c => c.UserGroups).AsQueryable()
-            //.Include(c => c.UserRoles).AsQueryable();
             return await query.SingleOrDefaultAsync(c => c.Id == id);
         }
 
@@ -64,7 +62,7 @@ namespace Infrastructure.Repositories.Implementations
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
-            //.Include(c => c.Lessons).AsQueryable();
+           
             if (!string.IsNullOrWhiteSpace(filterDto.Name))
             {
                 query = query.Where(c => c.Name == filterDto.Name);
@@ -110,7 +108,26 @@ namespace Infrastructure.Repositories.Implementations
             groups = groups.Where(x => groupSearchListIds.Contains(x.Id));
 
             return await groups.ToListAsync();
-         }
+        }
+
+        /// <summary>
+        /// Получить список ролей пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список ролей. </returns>
+        public async Task<List<Role>> GetRoleListAsync(Guid id)
+        {
+            var roles = Context.Set<Role>().AsQueryable()
+                            .Where(c => !c.Deleted);
+            var userroles = Context.Set<UserRole>().AsQueryable()
+                            .Where(c => c.UserId == id);
+
+            List<Guid> roleSearchListIds = userroles.Select(x => x.RoleId).ToList();
+
+            roles = roles.Where(x => roleSearchListIds.Contains(x.Id));
+
+            return await roles.ToListAsync();
+        }
     }
     
 }

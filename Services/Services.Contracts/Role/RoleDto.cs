@@ -21,16 +21,6 @@ namespace Services.Contracts.Role
         public string Name { get; set; }
 
         /// <summary>
-        /// Права доступа.
-        /// </summary>
-        public List<PermissionDto> Permissions { get; set; }
-
-        /// <summary>
-        /// Роли пользователей.
-        /// </summary>
-        public List<UserRoleDto> UserRoles { get; set; }
-
-        /// <summary>
         /// Удалено.
         /// </summary>
         public bool Deleted { get; set; }

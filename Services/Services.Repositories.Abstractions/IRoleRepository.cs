@@ -17,5 +17,12 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <returns> Список ролей. </returns>
         Task<List<Role>> GetListAsync();
+
+        /// <summary>
+        /// Получить список пользователей с ролью.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли. </param>
+        /// <returns> Список пользователей. </returns>
+        Task<List<User>> GetUserListAsync(Guid id);
     }
 }

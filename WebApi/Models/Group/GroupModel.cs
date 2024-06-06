@@ -17,11 +17,6 @@ namespace WebApi.Models.Group
         public string Name { get; set; }
 
         /// <summary>
-        /// Группы пользователей.
-        /// </summary>
-        public virtual List<UserGroupModel> UserGroups { get; set; }
-
-        /// <summary>
         /// Удалено.
         /// </summary>
         public bool Deleted { get; set; }

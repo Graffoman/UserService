@@ -22,7 +22,7 @@ namespace Services.Repositories.Abstractions
         /// Получить список пользователей группы.
         /// </summary>
         /// <param name="id"> Идентификатор группы. </param>
-        /// <returns> Список групп. </returns>
+        /// <returns> Список пользователей. </returns>
         Task<List<User>> GetUserListAsync(Guid id);
     }
 }

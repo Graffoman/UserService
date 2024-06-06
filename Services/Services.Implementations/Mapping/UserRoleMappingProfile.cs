@@ -18,7 +18,7 @@ namespace Services.Implementations.Mapping
         {
             CreateMap<UserRole, UserRoleDto>();
 
-            CreateMap<CreatingUserRoleDto, UserRoleDto>()
+            CreateMap<CreatingUserRoleDto, UserRole>()
                 .ForMember(d => d.Id, map => map.Ignore())
                 .ForMember(d => d.User, map => map.Ignore())               
                 .ForMember(d => d.Role, map => map.Ignore());      

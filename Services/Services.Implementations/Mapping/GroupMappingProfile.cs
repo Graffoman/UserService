@@ -16,8 +16,7 @@ namespace Services.Implementations.Mapping
     {
         public GroupMappingProfile()
         {
-            CreateMap<Group, GroupDto>()
-                .ForMember(d => d.UserGroups, map => map.MapFrom(m => m.UserGroups));
+            CreateMap<Group, GroupDto>();                
 
             CreateMap<CreatingGroupDto, Group>()
                 .ForMember(d => d.Id, map => map.Ignore())

@@ -4,10 +4,6 @@ namespace WebApi.Models.Role
 {
     public class CreatingRoleModel
     {
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
 
         /// <summary>
         /// Название.

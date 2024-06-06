@@ -34,18 +34,15 @@ namespace Services.Contracts.User
         /// <summary> Email. </summary>
         public string Email { get; set; }
 
-        /// <summary> Хэш пароля. </summary>
-        public string PasswordHash { get; set; }
-
         /// <summary>
         /// Группы пользователей.
         /// </summary>
-        public List<UserGroupDto> UserGroups { get; set; }
+        public List<GroupDto> Groups { get; set; }
 
         /// <summary>
         /// Роли пользователей.
         /// </summary>       
-        public List<UserRoleDto> UserRoles { get; set; }
+        public List<RoleDto> Roles { get; set; }
 
         /// <summary>
         /// Удалено.

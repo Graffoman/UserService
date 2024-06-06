@@ -19,10 +19,6 @@ namespace Services.Contracts.Group
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// Группы пользователей.
-        /// </summary>
-        public virtual List<UserGroupDto> UserGroups { get; set; }
 
         /// <summary>
         /// Удалено.

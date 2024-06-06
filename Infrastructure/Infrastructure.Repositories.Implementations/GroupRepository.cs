@@ -36,7 +36,8 @@ namespace Infrastructure.Repositories.Implementations
         /// <returns> Список групп. </returns>
         public async Task<List<Group>> GetListAsync()
         {
-            var query = GetAll();                
+            var query = GetAll()
+                 .Where(c => !c.Deleted);
             return await query.ToListAsync();
         }
 
@@ -44,7 +45,7 @@ namespace Infrastructure.Repositories.Implementations
         /// Получить список пользователей группы.
         /// </summary>
         /// <param name="id"> Идентификатор группы. </param>
-        /// <returns> Список групп. </returns>
+        /// <returns> Список пользоваетелей. </returns>
         public async Task<List<User>> GetUserListAsync(Guid id)
         {
             var users = Context.Set<User>().AsQueryable()

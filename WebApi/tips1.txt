@@ -13,3 +13,24 @@ dotnet ef database update --project Infrastructure\Infrastructure.EntityFramewor
   "email": "a_leg@mail.ru",
   "password": "admin"
 }
+
+
+C:\Windows\System32>cd "C:\Program Files\PostgreSQL\16\bin"
+
+C:\Program Files\PostgreSQL\16\bin>pg_ctl.exe status
+pg_ctl: каталог баз данных не указан и переменная окружения PGDATA не установлена
+Для дополнительной информации попробуйте "pg_ctl --help".
+
+C:\Program Files\PostgreSQL\16\bin>@SET PGDATA=C:\Program Files\PostgreSQL\16\data
+
+C:\Program Files\PostgreSQL\16\bin>pg_ctl.exe status
+pg_ctl: сервер не работает
+
+C:\Program Files\PostgreSQL\16\bin>pg_ctl.exe start
+ожидание запуска сервера....2024-06-06 18:14:02.055 MSK [31160] СООБЩЕНИЕ:  передача вывода в протокол процессу сбора протоколов
+2024-06-06 18:14:02.055 MSK [31160] ПОДСКАЗКА:  В дальнейшем протоколы будут выводиться в каталог "log".
+ готово
+
+ C:\Program Files\PostgreSQL\16\bin>pg_ctl.exe stop -m fast
+ожидание завершения работы сервера.... готово
+сервер остановлен

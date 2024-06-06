@@ -8,10 +8,6 @@ namespace Services.Contracts.Role
 {
     public class CreatingRoleDto
     {
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid Id { get; set; }
 
         /// <summary>
         /// Название.

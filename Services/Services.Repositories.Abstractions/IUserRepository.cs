@@ -40,5 +40,12 @@ namespace Services.Repositories.Abstractions
         /// <returns> Список групп. </returns>
         Task<List<Group>> GetGroupListAsync(Guid id);
 
+        /// <summary>
+        /// Получить список ролей пользователя.
+        /// </summary>
+        /// <param name="id"> Идентификатор. </param>
+        /// <returns> Список ролей. </returns>
+        Task<List<Role>> GetRoleListAsync(Guid id);
+
     }
 }

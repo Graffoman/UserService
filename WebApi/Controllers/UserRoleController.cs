@@ -22,7 +22,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("addusertorole")]
+        [HttpPost("adduserrole")]
         public async Task<IActionResult> AddUserToRoleAsync(CreatingUserRoleModel userRoleModel)
         {
             return Ok(await _service.AddUserToRoleAsync(_mapper.Map<CreatingUserRoleDto>(userRoleModel)));

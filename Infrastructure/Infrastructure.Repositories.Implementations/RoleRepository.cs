@@ -36,8 +36,28 @@ namespace Infrastructure.Repositories.Implementations
         /// <returns> Список ролей. </returns>
         public async Task<List<Role>> GetListAsync()
         {
-            var query = GetAll();
+            var query = GetAll()
+                 .Where(c => !c.Deleted);
             return await query.ToListAsync();
+        }
+
+        /// <summary>
+        /// Получить список пользователей с ролью.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли. </param>
+        /// <returns> Список пользоваетелей. </returns>
+        public async Task<List<User>> GetUserListAsync(Guid id)
+        {
+            var users = Context.Set<User>().AsQueryable()
+                            .Where(c => !c.Deleted);
+            var userroles = Context.Set<UserRole>().AsQueryable()
+                            .Where(c => c.RoleId == id);
+
+            List<Guid> userSearchListIds = userroles.Select(x => x.UserId).ToList();
+
+            users = users.Where(x => userSearchListIds.Contains(x.Id));
+
+            return await users.ToListAsync();
         }
     }
 }
