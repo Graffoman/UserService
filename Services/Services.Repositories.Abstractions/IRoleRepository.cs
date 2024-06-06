@@ -12,5 +12,10 @@ namespace Services.Repositories.Abstractions
     /// </summary>
     public interface IRoleRepository : IRepository<Role, Guid>
     {
+        /// <summary>
+        /// Получить полный список ролей.
+        /// </summary>
+        /// <returns> Список ролей. </returns>
+        Task<List<Role>> GetListAsync();
     }
 }

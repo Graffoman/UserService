@@ -33,7 +33,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <summary>
         /// Получить полный список.
         /// </summary>
-        /// <returns> Список пользователей. </returns>
+        /// <returns> Список групп. </returns>
         public async Task<List<Group>> GetListAsync()
         {
             var query = GetAll();                

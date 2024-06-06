@@ -13,23 +13,15 @@ namespace Services.Abstractions
     public interface IUserRoleService
     {
         /// <summary>
-        /// Получить роль пользователя. 
+        /// Добавить роль пользователю.
         /// </summary>
-        /// <param name="id"> Идентификатор </param>
-        /// <returns> ДТО роли пользователя </returns>
-        Task<UserRoleDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Создать роль пользователя.
-        /// </summary>
-        /// <param name="creatingUserGroupDto"> ДТО группы пользователей. </param>
-        /// <returns> Идентификатор. </returns>
-        Task<Guid> CreateAsync( CreatingUserRoleDto creatingUserRoleDto);
+        /// <param name="creatingUserRoleDto"> ДТО добавления роли пользоватьеля. </param>
+        Task<Guid> AddUserToRoleAsync(CreatingUserRoleDto creatingUserRoleDto);
 
         /// <summary>
         /// Удалить роль пользователя.
         /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        Task DeleteAsync(Guid id);
+        /// <param name="creatingUserRoleDto"> ДТО добавления роли пользоватьеля. </param>
+        Task DeleteUserFromRoleAsync(CreatingUserRoleDto creatingUserRoleDto);
     }
 }

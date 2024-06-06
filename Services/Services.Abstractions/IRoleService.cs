@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Services.Contracts.Group;
 using Services.Contracts.Role;
 
 namespace Services.Abstractions
@@ -18,7 +19,7 @@ namespace Services.Abstractions
         /// <param name="id"> Идентификатор. </param>
         /// <param name="cancellationToken"> Токен отмены </param>
         /// <returns> ДТО роли. </returns>
-        Task<RoleDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<RoleDto> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Создать роль.
@@ -39,6 +40,12 @@ namespace Services.Abstractions
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         Task DeleteAsync(Guid id);
+
+        /// <summary>
+        /// Получить полный список.
+        /// </summary>
+        /// <returns> Список ролей. </returns>
+        Task<ICollection<RoleDto>> GetListAsync();
 
     }
 }

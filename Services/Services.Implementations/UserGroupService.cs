@@ -35,7 +35,7 @@ namespace Services.Implementations
         /// <summary>
         /// Добавить пользователя в группу.
         /// </summary>
-        /// <param name="creatingUserGroupDto"> ДТО добавления пользоватьеля в группу. </param>
+        /// <param name="creatingUserGroupDto"> ДТО добавления пользователя в группу. </param>
         public async Task<Guid> AddUserToGroupAsync(CreatingUserGroupDto creatingUserGroupDto)
         {
             var testgroup = await _userGroupRepository.GetByUserIdGroupIdAsync(creatingUserGroupDto.UserId, creatingUserGroupDto.GroupId);
@@ -55,7 +55,7 @@ namespace Services.Implementations
         /// <summary>
         /// Удалить пользователя из группы.
         /// </summary>
-        /// <param name="creatingUserGroupDto"> ДТО добавления пользоватьеля в группу. </param>
+        /// <param name="creatingUserGroupDto"> ДТО добавления пользователя в группу. </param>
         public async Task DeleteUserFromGroupAsync(CreatingUserGroupDto creatingUserGroupDto)
         {
             var usergroup = await _userGroupRepository.GetByUserIdGroupIdAsync(creatingUserGroupDto.UserId, creatingUserGroupDto.GroupId);
