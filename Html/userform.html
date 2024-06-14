@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Пользователь</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-user-form">
+        <input type="text" id="userid" name="userid" value="" hidden />
+        <br>
+        <label for="userlastname">Фамилия:</label>
+        <input type="text" class="text" id="userlastname" name="userlastname" />
+        <br>
+        <label for="username">Имя:</label>
+        <input type="text" class="text" id="username" name="username" />
+        <br>
+        <label for="usermiddlename">Отчество:</label>
+        <input type="text" class="text" id="usermiddlename" name="usermiddlename" />
+        <br>
+        <label for="useremail">E-mail:</label>
+        <input type="text" class="text" id="useremail" name="useremail" />
+        <br>
+        <label for="userbirthdaydate">Дата рождения:</label>
+        <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
+        <br>
+        <label for="userdepartment">Подразделение:</label>
+        <input type="text" class="text" id="userdepartment" name="userdepartment" />
+        <br>
+        <label>Группы</label>
+        <br>
+        <label>Роли</label>
+    </div>
+    <script>
+        const userid = localStorage.getItem('userid');
+
+        async function loaduserinfo(loaduserid) {
+            let url = "https://localhost:5101/api/User/" + loaduserid;
+
+            let response = await fetch(url, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (response.ok === true) {
+                let user = await response.json();
+                document.getElementById("userlastname").value = user.lastName;
+                document.getElementById("username").value = user.name;
+                document.getElementById("usermiddlename").value = user.middleName;
+                document.getElementById("useremail").value = user.email;
+                document.getElementById("userbirthdaydate").value = user.birthdayDate;
+                document.getElementById("userdepartment").value = user.department;
+            }
+            else {
+                let error = await response.json();
+                console.log(error.message);
+            }
+     
+        }
+
+        window.onload = function () {
+            if (userid != null) {
+                document.getElementById("userid").value = userid;
+
+                loaduserinfo(userid);                
+            }
+
+
+        }
+    </script>
+</body>
+</html>
