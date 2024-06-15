@@ -4,70 +4,56 @@
 <head>
     <meta charset="utf-8" />
     <title>Пользователь</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">   
 </head>
 <body>
     <div class="main-user-form">
-        <input type="text" id="userid" name="userid" value="" hidden />
-        <br>
-        <label for="userlastname">Фамилия:</label>
-        <input type="text" class="text" id="userlastname" name="userlastname" />
-        <br>
-        <label for="username">Имя:</label>
-        <input type="text" class="text" id="username" name="username" />
-        <br>
-        <label for="usermiddlename">Отчество:</label>
-        <input type="text" class="text" id="usermiddlename" name="usermiddlename" />
-        <br>
-        <label for="useremail">E-mail:</label>
-        <input type="text" class="text" id="useremail" name="useremail" />
-        <br>
-        <label for="userbirthdaydate">Дата рождения:</label>
-        <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
-        <br>
-        <label for="userdepartment">Подразделение:</label>
-        <input type="text" class="text" id="userdepartment" name="userdepartment" />
-        <br>
-        <label>Группы</label>
-        <br>
-        <label>Роли</label>
-    </div>
-    <script>
-        const userid = localStorage.getItem('userid');
+        <div class="editorcontainer">
+            <h2>Данные пользователя</h2>
+            <input type="text" id="userid" name="userid" value="" hidden />
+        </div>
+        <div class="editorcontainer">
+            <label for="userlastname">Фамилия:</label>
+            <input type="text" class="text" id="userlastname" name="userlastname" />
+        </div>
+        <div class="editorcontainer">
+            <label for="username">Имя:</label>
+            <input type="text" class="text" id="username" name="username" />
+        </div>
+        <div class="editorcontainer">
+            <label for="usermiddlename">Отчество:</label>
+            <input type="text" class="text" id="usermiddlename" name="usermiddlename" />
+        </div>
+        <div class="editorcontainer">
+            <label for="useremail">E-mail:</label>
+            <input type="text" class="text" id="useremail" name="useremail" />
+        </div>
+        <div class="editorcontainer">
+            <label for="userbirthdaydate">Дата рождения:</label>
+            <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
+        </div>
+        </div>
+        <div class="editorcontainer">
+            <label for="userdepartment">Подразделение:</label>
+            <input type="text" class="text" id="userdepartment" name="userdepartment" />
+     </div>
+     <div class="userformtable">
+            <h2>Роли пользователя</h2>
+            <table class="table" name="userroletable" id="userroletable">
+                <thead><tr><th>Наименование роли</th></tr></thead>
+                <tbody name="userroletbody" id="userroletbody">
+                </tbody>
+            </table>
+     </div>
+        <div class="userformtable">
+            <h2>Группы, в которых состоит пользователь</h2>
+            <table class="table" name="usergrouptable" id="usergrouptable">
+                <thead><tr><th>Наименование группы</th></tr></thead>
+                <tbody name="usergrouptbody" id="usergrouptbody">
+                </tbody>
+            </table>
+        </div>
 
-        async function loaduserinfo(loaduserid) {
-            let url = "https://localhost:5101/api/User/" + loaduserid;
-
-            let response = await fetch(url, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" }
-            });
-
-            if (response.ok === true) {
-                let user = await response.json();
-                document.getElementById("userlastname").value = user.lastName;
-                document.getElementById("username").value = user.name;
-                document.getElementById("usermiddlename").value = user.middleName;
-                document.getElementById("useremail").value = user.email;
-                document.getElementById("userbirthdaydate").value = user.birthdayDate;
-                document.getElementById("userdepartment").value = user.department;
-            }
-            else {
-                let error = await response.json();
-                console.log(error.message);
-            }
-     
-        }
-
-        window.onload = function () {
-            if (userid != null) {
-                document.getElementById("userid").value = userid;
-
-                loaduserinfo(userid);                
-            }
-
-
-        }
-    </script>
+        <script src = "js/userform.js"></script>
 </body>
 </html>
