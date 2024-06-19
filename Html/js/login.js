@@ -13,7 +13,7 @@ if (response.ok === true) {
     let user = await response.json();
     document.getElementById("userid").value = user.id;
     localStorage.setItem('userid', user.id);
-    window.location.href = 'userform.html';
+    window.location.href = 'user.html';
     }
  else {
     let error = await response.json();

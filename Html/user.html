@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="css/main.css">   
 </head>
 <body>
+    <div class="menu">
+        <ul>
+            <li><a href="#">Пользователи</a></li>
+            <li><a href="listgroup.html">Группы</a></li>
+            <li><a href="listrole.html">Роли</a></li>
+        </ul>
+    </div>
     <div class="main-user-form">
         <div class="editorcontainer">
             <h2>Данные пользователя</h2>
@@ -32,28 +39,28 @@
             <label for="userbirthdaydate">Дата рождения:</label>
             <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
         </div>
-        </div>
-        <div class="editorcontainer">
-            <label for="userdepartment">Подразделение:</label>
-            <input type="text" class="text" id="userdepartment" name="userdepartment" />
-     </div>
-     <div class="userformtable">
-            <h2>Роли пользователя</h2>
-            <table class="table" name="userroletable" id="userroletable">
-                <thead><tr><th>Наименование роли</th></tr></thead>
-                <tbody name="userroletbody" id="userroletbody">
-                </tbody>
-            </table>
-     </div>
-        <div class="userformtable">
-            <h2>Группы, в которых состоит пользователь</h2>
-            <table class="table" name="usergrouptable" id="usergrouptable">
-                <thead><tr><th>Наименование группы</th></tr></thead>
-                <tbody name="usergrouptbody" id="usergrouptbody">
-                </tbody>
-            </table>
-        </div>
+    </div>
+    <div class="editorcontainer">
+        <label for="userdepartment">Подразделение:</label>
+        <input type="text" class="text" id="userdepartment" name="userdepartment" />
+    </div>
+    <div class="userformtable">
+        <h2>Роли пользователя</h2>
+        <table class="table" name="userroletable" id="userroletable">
+            <thead><tr><th>Наименование роли</th></tr></thead>
+            <tbody name="userroletbody" id="userroletbody">
+            </tbody>
+        </table>
+    </div>
+    <div class="userformtable">
+        <h2>Группы, в которых состоит пользователь</h2>
+        <table class="table" name="usergrouptable" id="usergrouptable">
+            <thead><tr><th>Наименование группы</th></tr></thead>
+            <tbody name="usergrouptbody" id="usergrouptbody">
+            </tbody>
+        </table>
+    </div>
 
-        <script src = "js/userform.js"></script>
+    <script src="js/userform.js"></script>
 </body>
 </html>

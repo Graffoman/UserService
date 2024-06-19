@@ -67,13 +67,39 @@ input[type="date"]:focus {
 
     .table th {
         font-weight: bold;
+        color: white;
         padding: 5px;
         background: #66afe9;
         border: 1px solid #dddddd;
     }
 
-    .table td {
+.table td {
         border: 1px solid #dddddd;
         padding: 5px;
-    }border-top: 1px solid #716561;
+        border-top: 1px solid #716561;
     }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #66afe9;
+}
+
+li {
+    float: left;
+}
+
+li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        /* Измените цвет ссылки на #111 (черный) при наведении курсора */
+        li a:hover {
+            background-color: #111;
+        }
