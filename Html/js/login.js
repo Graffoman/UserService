@@ -13,6 +13,7 @@ if (response.ok === true) {
     let user = await response.json();
     document.getElementById("userid").value = user.id;
     localStorage.setItem('userid', user.id);
+    localStorage.setItem('mainuserid', user.id);
     window.location.href = 'user.html';
     }
  else {

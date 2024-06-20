@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Группа</title>
+    <link rel="stylesheet" href="css/main.css">   
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="listgroup.html">Пользователи</a></li>
+            <li><a href="listgroup.html">Группы</a></li>
+            <li><a href="listgroup.html">Роли</a></li>
+        </ul>
+    </div>
+    <div class="main-group-form">
+        <div class="editorcontainer">
+            <h2>Данные группы</h2>
+            <input type="text" id="groupid" name="groupid" value="" hidden />
+        </div>
+        <div>
+            <label for="groupname">Наименование:</label>
+            <input type="text" class="text" id="groupname" name="groupname" />
+        </div>
+    </div>
+    <div class="groupformtable">
+        <h2>Пользователи</h2>
+        <table class="table" name="usertable" id="usertable">
+            <thead>
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Подразделение</th>
+                    <th>E-mail</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody name="usertbody" id="usertbody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const groupid = localStorage.getItem('groupid');
+
+        async function loadgroupinfo(loadgroupid) {
+            let url = "https://localhost:5101/api/Group/" + loadgroupid;
+
+            let response = await fetch(url, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (response.ok === true) {
+                let group = await response.json();
+                document.getElementById("groupname").value = group.name;
+            }
+            else {
+                let error = await response.json();
+                console.log(error.message);
+            }
+
+            let urluserlist = "https://localhost:5101/api/Group/userlist?id=" + loadgroupid;
+
+            let responseuserlist = await fetch(urluserlist, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (responseuserlist.ok === true) {
+                let users = await responseuserlist.json();
+                let userrows = document.getElementById("usertbody");
+                users.forEach(user => userrows.append(userrow(user)));
+            }
+            else {
+                let error = await responseuserlist.json();
+                console.log(error.message);
+            }
+
+        }
+
+        function userrow(user) {
+
+            let tr = document.createElement("tr");
+            tr.setAttribute("data-rowid", user.id);
+
+            let lastnameTd = document.createElement("td");
+            lastnameTd.append(user.lastName);
+            tr.append(lastnameTd);
+
+            let nameTd = document.createElement("td");
+            nameTd.append(user.name);
+            tr.append(nameTd);
+
+            let middlenameTd = document.createElement("td");
+            middlenameTd.append(user.middleName);
+            tr.append(middlenameTd);
+
+            let departmentTd = document.createElement("td");
+            departmentTd.append(user.department);
+            tr.append(departmentTd);
+
+            let emailTd = document.createElement("td");
+            emailTd.append(user.email);
+            tr.append(emailTd);
+
+            /*
+            let linksTd = document.createElement("td");
+
+            const removeLink = document.createElement("button");
+            removeLink.append("Удалить");
+            removeLink.addEventListener("click", async () => await deleteUser(user.id));
+
+            linksTd.append(removeLink);
+            tr.appendChild(linksTd);
+            */
+
+            let linksTd = document.createElement("td");
+
+            const editLink = document.createElement("button");
+            editLink.append("Подробнее");
+            editLink.className = "button";
+            editLink.addEventListener("click", async () => await edituser(user.id));
+
+            linksTd.append(editLink);
+            tr.appendChild(linksTd);
+
+            return tr;
+        }
+
+        function edituser(userid) {
+            localStorage.setItem('userid', userid);
+            window.location.href = 'user.html';
+        }
+
+        window.onload = function () {
+            if (groupid != null) {
+                document.getElementById("groupid").value = groupid;
+
+                loadgroupinfo(groupid);
+            }
+
+
+        }
+
+    </script>
+</body>
+</html>

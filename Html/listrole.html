@@ -9,7 +9,7 @@
 <body>
     <div class="menu">
         <ul>
-            <li><a href="#">Пользователи</a></li>
+            <li><a href="listuser.html">Пользователи</a></li>
             <li><a href="listgroup.html">Группы</a></li>
             <li><a href="listrole.html">Роли</a></li>
         </ul>
@@ -17,58 +17,16 @@
     <div class="userformtable">
         <h2>Список ролей</h2>
         <table class="table" name="roletable" id="roletable">
-            <thead><tr><th>Наименование роли</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Наименование роли</th>
+                    <th></th>
+                </tr>
+            </thead>
             <tbody name="roletbody" id="roletbody">
             </tbody>
         </table>
     </div>
-    <script>
-        async function loadlistrole() {
-            let url = "https://localhost:5101/api/Role/list";
-
-            let response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" }
-            });
-
-            if (response.ok === true) {
-                let roles = await response.json();
-                let rolerows = document.getElementById("roletbody");
-                roles.forEach(role => rolerows.append(rolerow(role)));
-            }
-            else {
-                let error = await response.json();
-                console.log(error.message);
-            }
-
-        }
-
-        function rolerow(role) {
-
-            let tr = document.createElement("tr");
-            tr.setAttribute("data-rowid", role.id);
-
-            let nameTd = document.createElement("td");
-            nameTd.append(role.name);
-            tr.append(nameTd);
-
-            /*
-            let linksTd = document.createElement("td");
-
-            const removeLink = document.createElement("button");
-            removeLink.append("Удалить");
-            removeLink.addEventListener("click", async () => await deleteRole(role.id));
-
-            linksTd.append(removeLink);
-            tr.appendChild(linksTd);
-            */
-
-            return tr;
-        }
-
-        window.onload = function () {
-            loadlistrole();
-        }
-    </script>
+    <script type="text/javascript" src="js/listrole.js" charset="windows-1251"></script>
 </body>
 </html>

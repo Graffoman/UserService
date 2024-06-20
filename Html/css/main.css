@@ -21,6 +21,14 @@ input[type='button'] {
     cursor: pointer;
 }
 
+.button {
+    background: #66afe9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
 .main-login-form {
     max-width: 400px;
     margin: 0 auto;
