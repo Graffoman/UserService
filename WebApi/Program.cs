@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.RegularExpressions;
 
 namespace WebApi
 {
@@ -15,7 +16,8 @@ namespace WebApi
             {
                 var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                 db.Database.Migrate();
-            }
+            }           
+
             host.Run();
         }
 

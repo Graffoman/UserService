@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <title>Пользователь</title>
@@ -39,11 +39,22 @@
             <label for="userbirthdaydate">Дата рождения:</label>
             <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
         </div>
-    </div>
-    <div class="editorcontainer">
-        <label for="userdepartment">Подразделение:</label>
-        <input type="text" class="text" id="userdepartment" name="userdepartment" />
-    </div>
+        <div class="editorcontainer">
+            <label for="userdepartment">Подразделение:</label>
+            <input type="text" class="text" id="userdepartment" name="userdepartment" />
+        </div>
+        <div class="editorcontainer">
+            <label for="userpassword">Пароль:</label>
+            <input type="password" class="userpassword" id="userpassword" name="userpassword" />
+        </div>        
+        <div class="editorcontainer">
+            <label for="userpasswordrepeat">Повтор пароля:</label>
+            <input type="password" class="userpassword" id="userpasswordrepeat" name="userpasswordrepeat" />
+        </div>
+        <div class="editorcontainer">
+            <input type="button" class="button" id="savebutton" name="savebutton" value="Сохранить" />
+        </div>
+    </div>    
     <div class="userformtable">
         <h2>Роли пользователя</h2>
         <table class="table" name="userroletable" id="userroletable">
@@ -61,6 +72,6 @@
         </table>
     </div>
 
-    <script src="js/user.js"></script>
+    <script src="js/user.js" charset="windows-1251"></script>
 </body>
 </html>

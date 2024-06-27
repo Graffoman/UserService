@@ -27,6 +27,34 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Repositories.Abstr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{93C6650C-DBAD-456E-AED8-F9E9FE28F8B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Html", "Html", "{F608B0E2-E645-4013-8422-9EAB77E1C408}"
+	ProjectSection(SolutionItems) = preProject
+		Html\group.html = Html\group.html
+		Html\index.html = Html\index.html
+		Html\listgroup.html = Html\listgroup.html
+		Html\listrole.html = Html\listrole.html
+		Html\listuser.html = Html\listuser.html
+		Html\role.html = Html\role.html
+		Html\user.html = Html\user.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{C40DB03C-7497-4B6D-AE17-F93731FE0288}"
+	ProjectSection(SolutionItems) = preProject
+		Html\js\group.js = Html\js\group.js
+		Html\js\jquery-3.7.1.min.js = Html\js\jquery-3.7.1.min.js
+		Html\js\listgroup.js = Html\js\listgroup.js
+		Html\js\listrole.js = Html\js\listrole.js
+		Html\js\listuser.js = Html\js\listuser.js
+		Html\js\login.js = Html\js\login.js
+		Html\js\role.js = Html\js\role.js
+		Html\js\user.js = Html\js\user.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{64110307-3EBC-4356-A571-E0B5916A13B2}"
+	ProjectSection(SolutionItems) = preProject
+		Html\css\main.css = Html\css\main.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +106,8 @@ Global
 		{2AB38CAC-C457-4B2F-95A9-37D3D9FF93EC} = {BCD46A8F-5AA8-4D92-999E-88C792B3F874}
 		{D2B21B8E-D306-42EB-B816-854FA6B36A90} = {BCD46A8F-5AA8-4D92-999E-88C792B3F874}
 		{93C6650C-DBAD-456E-AED8-F9E9FE28F8B1} = {78167810-3CF7-4277-9849-0F1F58DA43DA}
+		{C40DB03C-7497-4B6D-AE17-F93731FE0288} = {F608B0E2-E645-4013-8422-9EAB77E1C408}
+		{64110307-3EBC-4356-A571-E0B5916A13B2} = {F608B0E2-E645-4013-8422-9EAB77E1C408}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {662AE8E9-04EF-4B26-8AD1-F4B6E0DB57F8}

@@ -119,7 +119,10 @@ namespace Services.Implementations
             user.BirthdayDate = updatingUserDto.BirthdayDate;
             user.Department = updatingUserDto.Department;
             user.Email = updatingUserDto.Email;
-            user.PasswordHash = CreateSHA256(updatingUserDto.Password);
+            if (!string.IsNullOrEmpty(updatingUserDto.Password))
+            { 
+                user.PasswordHash = CreateSHA256(updatingUserDto.Password);
+            }
 
             _userRepository.Update(user);
             await _userRepository.SaveChangesAsync();

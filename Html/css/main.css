@@ -1,13 +1,10 @@
-﻿input[type='password'], input[type='email'] {
-    width: 100%;
+﻿input[type='password'], input[type='email'] {    
     padding: 10px;
     border-radius: 3px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    border: 1px solid #ccc;    
 }
 
-    input[type='password']:focus, input[type='email']:focus {
+input[type='password']:focus, input[type='email']:focus {
         border: 1px solid #5db6db;
         box-shadow: 0 0 10px #b9eaff;
         outline: none !important;
@@ -44,25 +41,27 @@ input[type='button'] {
 }
 
 input[type="text"] {
-    padding: 6px 10px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 input[type="date"] {
-    padding: 6px 10px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 input[type="text"]:focus {
     outline: none;
-    box-shadow: 0 0 3px #66afe9;
+    border: 1px solid #5db6db;
+    box-shadow: 0 0 10px #b9eaff;
 }
 
 input[type="date"]:focus {
     outline: none;
-    box-shadow: 0 0 3px #66afe9;
+    border: 1px solid #5db6db;
+    box-shadow: 0 0 10px #b9eaff;
 }
 
 
@@ -111,3 +110,8 @@ li a {
         li a:hover {
             background-color: #111;
         }
+
+.userpassword {
+    width ="20%"
+}
+

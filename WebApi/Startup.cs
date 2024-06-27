@@ -56,7 +56,9 @@ namespace WebApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();    
+          
+
 
             if (!env.IsProduction())
             {

@@ -7,12 +7,20 @@
 </head>
 <body>
     <div class="main-login-form">
-        <label for="emaileditor">E-mail:</label>
-        <input type="email" class="text" id="emaileditor" name="emaileditor" required />
+        <div class="editorcontainer">
+            <label for="emaileditor">E-mail:</label>
+            <br>
+            <input type="email" class="text" id="emaileditor" name="emaileditor" style="width: 100%;" required />
+        </div>
+        <div class="editorcontainer">
+            <label for="passwordeditor">Пароль:</label>
+            <br>
+            <input type="password" class="text" id="passwordeditor" name="passwordeditor" style="width: 100%;" required />
+        </div>
         <br>
-        <label for="passwordeditor">Пароль:</label>
-        <input type="password" class="text" id="passwordeditor" name="passwordeditor" required />
-        <input type="button" class="button" id="loginbutton" name="loginbutton" value="Вход" />
+        <div class="editorcontainer">            
+            <input type="button" class="button" id="loginbutton" name="loginbutton" style="display: block; position: relative; margin: 0 auto; " value="Вход" />
+        </div>        
         <br>
         <input type="text" id="userid" name="userid" value="" hidden />
     </div>

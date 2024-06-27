@@ -1,12 +1,12 @@
 
 const userid = localStorage.getItem('userid');
 
-    async function loaduserinfo(loaduserid) {
-        let url = "https://localhost:5101/api/User/" + loaduserid;
+async function loaduserinfo(loaduserid) {
+    let url = "https://localhost:5101/api/User/" + loaduserid;
 
     let response = await fetch(url, {
         method: "GET",
-    headers: {"Content-Type": "application/json" }
+        headers: {"Content-Type": "application/json" }
                 });
 
 if (response.ok === true) {
@@ -25,13 +25,13 @@ if (response.ok === true) {
     let rolerows = document.getElementById("userroletbody");
                     roles.forEach(role => rolerows.append(rolerow(role)));
 
-}
-else {
+    }
+    else {
         let error = await response.json();
         console.log(error.message);
       }
 
-            }
+    }
 
     function grouprow(group) {
 
@@ -54,7 +54,7 @@ else {
     */
 
     return tr;
-            }
+}
 
     function rolerow(role) {
 
@@ -77,15 +77,53 @@ else {
     */
 
     return tr;
-            }
+}
 
     window.onload = function () {
-                if (userid != null) {
-        document.getElementById("userid").value = userid;
+        if (userid != null) {
+            document.getElementById("userid").value = userid;
+            loaduserinfo(userid);
+        }
+}
 
-    loaduserinfo(userid);
-                }
+async function saveuserinfo(saveuserid, userlastName, username, usermiddleName, useremail, userbirthdayDate, userdepartment, userpassword ) {
+    let url = "https://localhost:5101/api/User/" + saveuserid;
 
+    let response = await fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            lastName: userlastName,
+            name: username,
+            middleName: usermiddleName,
+            email: useremail,
+            birthdayDate: userbirthdayDate,
+            department: userdepartment,
+            password: userpassword
+        })
+    });
 
-            }
+    if (response.ok === true) {
+        alert("Данные сохранены!");
+    }
+    else {
+        const error = await response.json();
+        console.log(error.message);
+    }
+}
+
+document.getElementById("savebutton").addEventListener("click", async () => {
+    let lastName = document.getElementById("userlastname").value;
+    let name = document.getElementById("username").value;
+    let middleName = document.getElementById("usermiddlename").value;
+    let email = document.getElementById("useremail").value;
+    let birthdayDate = document.getElementById("userbirthdaydate").value;
+    let department = document.getElementById("userdepartment").value;
+    let password = document.getElementById("userpassword").value;
+    let passwordrepeat = document.getElementById("userpasswordrepeat").value;
+    if (password != passwordrepeat)
+        alert("Не совпадают пароль и его повтор!")
+    else await saveuserinfo(userid, lastName, name, middleName, email, birthdayDate, department, password);
+});
+
 
