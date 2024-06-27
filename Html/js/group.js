@@ -36,6 +36,31 @@ async function loadgroupinfo(loadgroupid) {
 
 }
 
+async function deleteUserGroup(deleteuserid, deletegroupid) {
+    let cr = confirm('Вы уверены, что хотите удалить пользователя из группы?');
+    if (cr) {
+        let url = "https://localhost:5101/api/UserGroup/deleteuserfromgroup";
+
+        let response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userId: deleteuserid,
+                groupId: deletegroupid
+            })
+        });
+
+        if (response.ok === true) {
+            location.reload();
+        }
+        else {
+            let error = await response.json();
+            console.log(error.message);
+        }
+    }
+
+}
+
 function userrow(user) {
 
     let tr = document.createElement("tr");
@@ -60,18 +85,7 @@ function userrow(user) {
     let emailTd = document.createElement("td");
     emailTd.append(user.email);
     tr.append(emailTd);
-
-    /*
-    let linksTd = document.createElement("td");
-
-    const removeLink = document.createElement("button");
-    removeLink.append("Удалить");
-    removeLink.addEventListener("click", async () => await deleteUser(user.id));
-
-    linksTd.append(removeLink);
-    tr.appendChild(linksTd);
-    */
-
+    
     let linksTd = document.createElement("td");
 
     const editLink = document.createElement("button");
@@ -81,6 +95,16 @@ function userrow(user) {
 
     linksTd.append(editLink);
     tr.appendChild(linksTd);
+
+    let removelinksTd = document.createElement("td");
+
+    const removeLink = document.createElement("button");
+    removeLink.className = "deletebutton";
+    removeLink.append("Удалить");
+    removeLink.addEventListener("click", async () => await deleteUserGroup(user.id, groupid));
+
+    removelinksTd.append(removeLink);
+    tr.appendChild(removelinksTd); 
 
     return tr;
 }
