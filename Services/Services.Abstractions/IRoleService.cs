@@ -55,5 +55,12 @@ namespace Services.Abstractions
         /// <returns> Список пользователей. </returns>
         Task<ICollection<UserDto>> GetUserListAsync(Guid id);
 
+        /// <summary>
+        /// Получить список пользователей, у которых нет роли.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли </param>
+        /// <returns> Список пользователей. </returns>
+        Task<ICollection<UserDto>> GetUserNotInRoleListAsync(Guid id);
+
     }
 }

@@ -76,6 +76,7 @@ input[type="date"]:focus {
 .table {
     width: 20%;
     margin-bottom: 20px;
+    margin-top: 5px;
     border: 1px solid #dddddd;
     border-collapse: collapse;
 }
@@ -100,6 +101,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #66afe9;
+    margin-bottom: 3px;
 }
 
 li {

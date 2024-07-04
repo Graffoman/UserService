@@ -19,10 +19,19 @@ namespace Services.Repositories.Abstractions
         Task<List<Role>> GetListAsync();
 
         /// <summary>
+        /// Получить список пользователей, у которых нет роли.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли. </param>
+        /// <returns> Список пользоваетелей. </returns>
+        Task<List<User>> GetUserNotInRoleListAsync(Guid id);
+
+        /// <summary>
         /// Получить список пользователей с ролью.
         /// </summary>
         /// <param name="id"> Идентификатор роли. </param>
-        /// <returns> Список пользователей. </returns>
+        /// <returns> Список пользоваетелей. </returns>
         Task<List<User>> GetUserListAsync(Guid id);
+
+
     }
 }

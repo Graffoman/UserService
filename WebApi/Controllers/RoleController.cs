@@ -60,5 +60,11 @@ namespace WebApi.Controllers
         {
             return Ok(_mapper.Map<List<UserModel>>(await _service.GetUserListAsync(id)));
         }
+
+        [HttpPost("usernotinrolelist")]
+        public async Task<IActionResult> GetUserNotInRoleListAsync(Guid id)
+        {
+            return Ok(_mapper.Map<List<UserModel>>(await _service.GetUserNotInRoleListAsync(id)));
+        }
     }
 }

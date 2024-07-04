@@ -118,5 +118,16 @@ namespace Services.Implementations
             ICollection<User> entities = await _roleRepository.GetUserListAsync(id);
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
         }
-    }
+
+        /// <summary>
+        /// Получить список пользователей, у которых нет роли.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли </param>
+        /// <returns> Список пользователей. </returns>
+        public async Task<ICollection<UserDto>> GetUserNotInRoleListAsync(Guid id)          
+        {
+            ICollection<User> entities = await _roleRepository.GetUserNotInRoleListAsync(id);
+            return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
+        }
+}
 }

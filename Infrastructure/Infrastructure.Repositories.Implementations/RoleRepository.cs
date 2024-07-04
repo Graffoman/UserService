@@ -59,5 +59,26 @@ namespace Infrastructure.Repositories.Implementations
 
             return await users.ToListAsync();
         }
+
+        /// <summary>
+        /// Получить список пользователей, у которых нет роли.
+        /// </summary>
+        /// <param name="id"> Идентификатор роли. </param>
+        /// <returns> Список пользоваетелей. </returns>
+        public async Task<List<User>> GetUserNotInRoleListAsync(Guid id)
+        {
+            var allusers = Context.Set<User>().AsQueryable()
+                            .Where(c => !c.Deleted);
+            
+
+            var userroles = Context.Set<UserRole>().AsQueryable()
+                            .Where(c => c.RoleId == id);
+
+            List<Guid> userSearchListIds = userroles.Select(x => x.UserId).ToList();
+
+            var usershasrole = allusers.Where(x => userSearchListIds.Contains(x.Id));
+
+            return await allusers.Except(usershasrole).ToListAsync();
+        }
     }
 }

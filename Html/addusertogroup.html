@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Добавление пользователей</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="listuser.html">Пользователи</a></li>
+            <li><a href="listgroup.html">Группы</a></li>
+            <li><a href="listrole.html">Роли</a></li>
+        </ul>
+    </div>
+    <div class="userformtable">
+        <input type="button" id="saveusersbutton" name="saveusersbutton" value="Добавить" />
+        <table class="table" name="selecttable" id="selecttable">
+            <thead>
+                <tr>
+                    <th>ФИО пользователя</th>
+                    <th>E-mail</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody name="selecttablebody" id="selecttablebody">
+            </tbody>
+        </table>
+    </div>
+    <!--<script src="js/addusertogroup.js" charset="windows-1251"></script>-->
+    <script src="js/addusertogroup.js"></script>
+</body>
+</html>

@@ -118,6 +118,16 @@ namespace Services.Implementations
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
         }
 
+        /// <summary>
+        /// Получить список пользователей, не состоящих в группе.
+        /// </summary>
+        /// <param name="id"> Идентификатор группы </param>
+        /// <returns> Список пользователей. </returns>
+        public async Task<ICollection<UserDto>> GetUserNotInGroupListAsync(Guid id)
+        {
+            ICollection<User> entities = await _groupRepository.GetUserNotInGroupListAsync(id);
+            return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
+        }
     }
 
 }

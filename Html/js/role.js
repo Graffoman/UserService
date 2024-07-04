@@ -145,3 +145,7 @@ document.getElementById("savebutton").addEventListener("click", async () => {
     let name = document.getElementById("rolename").value;
     await saveroleinfo(roleid, name);   
 });
+
+document.getElementById("adduserbutton").addEventListener("click", async () => {
+    window.location.href = 'addusertorole.html';
+});

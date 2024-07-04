@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Html", "Html", "{F608B0E2-E645-4013-8422-9EAB77E1C408}"
 	ProjectSection(SolutionItems) = preProject
+		Html\addusertogroup.html = Html\addusertogroup.html
 		Html\group.html = Html\group.html
+		Html\addusertorole.html = Html\addusertorole.html
 		Html\index.html = Html\index.html
 		Html\listgroup.html = Html\listgroup.html
 		Html\listrole.html = Html\listrole.html
@@ -40,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Html", "Html", "{F608B0E2-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{C40DB03C-7497-4B6D-AE17-F93731FE0288}"
 	ProjectSection(SolutionItems) = preProject
+		Html\js\addusertogroup.js = Html\js\addusertogroup.js
+		Html\js\addusertorole.js = Html\js\addusertorole.js
 		Html\js\group.js = Html\js\group.js
 		Html\js\jquery-3.7.1.min.js = Html\js\jquery-3.7.1.min.js
 		Html\js\listgroup.js = Html\js\listgroup.js

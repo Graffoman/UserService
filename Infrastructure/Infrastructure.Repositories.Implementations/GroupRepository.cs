@@ -59,6 +59,26 @@ namespace Infrastructure.Repositories.Implementations
 
             return await users.ToListAsync();
         }
+
+        /// <summary>
+        /// Получить список пользователей, не входящих в группу.
+        /// </summary>
+        /// <param name="id"> Идентификатор группы. </param>
+        /// <returns> Список пользователей. </returns>
+        public async Task<List<User>> GetUserNotInGroupListAsync(Guid id)
+        {
+            var allusers = Context.Set<User>().AsQueryable()
+                            .Where(c => !c.Deleted);
+
+            var usergroups = Context.Set<UserGroup>().AsQueryable()
+                             .Where(c => c.GroupId == id);
+
+            List<Guid> userSearchListIds = usergroups.Select(x => x.UserId).ToList();
+
+            var usersingroup = allusers.Where(x => userSearchListIds.Contains(x.Id));
+
+            return await allusers.Except(usersingroup).ToListAsync();
+        }
     }
 
 }

@@ -148,3 +148,7 @@ document.getElementById("savebutton").addEventListener("click", async () => {
     let groupname = document.getElementById("groupname").value;
     await savegroupinfo(groupid, groupname);
 });
+
+document.getElementById("adduserbutton").addEventListener("click", async () => {
+    window.location.href = 'addusertogroup.html';
+});
