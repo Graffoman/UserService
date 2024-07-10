@@ -56,6 +56,10 @@ function editrole(roleid) {
     window.location.href = 'role.html';
 }
 
+document.getElementById("addrolebutton").addEventListener("click", async () => {
+    window.location.href = 'newrole.html';
+});
+
 window.onload = function () {
     loadlistrole();
 }

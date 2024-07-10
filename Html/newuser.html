@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Пользователь</title>
+    <link rel="stylesheet" href="css/main.css">   
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="listuser.html">Пользователи</a></li>
+            <li><a href="listgroup.html">Группы</a></li>
+            <li><a href="listrole.html">Роли</a></li>
+        </ul>
+    </div>
+    <div class="main-user-form">
+        <div class="editorcontainer">
+            <h2>Данные пользователя</h2>
+            <input type="text" id="userid" name="userid" value="" hidden />
+        </div>
+        <div class="editorcontainer">
+            <label for="userlastname">Фамилия:</label>
+            <input type="text" class="text" id="userlastname" name="userlastname" />
+        </div>
+        <div class="editorcontainer">
+            <label for="username">Имя:</label>
+            <input type="text" class="text" id="username" name="username" />
+        </div>
+        <div class="editorcontainer">
+            <label for="usermiddlename">Отчество:</label>
+            <input type="text" class="text" id="usermiddlename" name="usermiddlename" />
+        </div>
+        <div class="editorcontainer">
+            <label for="useremail">E-mail:</label>
+            <input type="text" class="text" id="useremail" name="useremail" />
+        </div>
+        <div class="editorcontainer">
+            <label for="userbirthdaydate">Дата рождения:</label>
+            <input type="date" class="text" id="userbirthdaydate" name="userbirthdaydate" />
+        </div>
+        <div class="editorcontainer">
+            <label for="userdepartment">Подразделение:</label>
+            <input type="text" class="text" id="userdepartment" name="userdepartment" />
+        </div>
+        <div class="editorcontainer">
+            <label for="userpassword">Пароль:</label>
+            <input type="password" class="userpassword" id="userpassword" name="userpassword" />
+        </div>        
+        <div class="editorcontainer">
+            <label for="userpasswordrepeat">Повтор пароля:</label>
+            <input type="password" class="userpassword" id="userpasswordrepeat" name="userpasswordrepeat" />
+        </div>
+        <div class="editorcontainer">
+            <input type="button" class="button" id="savebutton" name="savebutton" value="Сохранить пользователя" />
+        </div>
+    </div>    
+
+    <script src="js/newuser.js" charset="windows-1251"></script>
+</body>
+</html>

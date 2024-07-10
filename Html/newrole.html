@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Роль</title>
+    <link rel="stylesheet" href="css/main.css">   
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="listrole.html">Пользователи</a></li>
+            <li><a href="listgroup.html">Группы</a></li>
+            <li><a href="listrole.html">Роли</a></li>
+        </ul>
+    </div>
+    <div class="main-role-form">
+        <div class="editorcontainer">
+            <h2>Данные роли</h2>
+            <input type="text" id="roleid" name="roleid" value="" hidden />
+        </div>
+        <div>
+            <label for="rolename">Наименование:</label>
+            <input type="text" class="text" id="rolename" name="rolename" />
+        </div>
+        <div class="editorcontainer">
+            <input type="button" class="button" id="savebutton" name="savebutton" value="Сохранить роль" />
+        </div>
+    </div>    
+
+    <script src="js/newrole.js" charset="windows-1251"></script>
+</body>
+</html>

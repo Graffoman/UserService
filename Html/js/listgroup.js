@@ -56,6 +56,10 @@ function editgroup(groupid) {
     window.location.href = 'group.html';
 }
 
+document.getElementById("addgroupbutton").addEventListener("click", async () => {
+    window.location.href = 'newgroup.html';
+});
+
 window.onload = function () {
     loadlistgroup();
 }   

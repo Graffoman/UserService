@@ -77,7 +77,7 @@ async function SaveSelectedUsers(addroleid) {
             await AddUserRole(addroleid, adduserid);
         }
     }
-    console.log("Переход на role");
+    
     location.href = 'role.html';
 }
 

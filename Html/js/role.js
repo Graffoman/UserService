@@ -133,7 +133,7 @@ async function saveroleinfo(saveroleid, rolename) {
     });
 
     if (response.ok === true) {
-        alert("Данные сохранены!");
+        console.log("Данные сохранены");
     }
     else {
         const error = await response.json();

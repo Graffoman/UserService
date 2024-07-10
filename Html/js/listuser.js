@@ -89,6 +89,10 @@ function edituser(userid) {
     window.location.href = 'user.html';
 }
 
+document.getElementById("adduserbutton").addEventListener("click", async () => {
+    window.location.href = 'newuser.html';
+});
+
 window.onload = function () {
     loadlistuser();
 }    
