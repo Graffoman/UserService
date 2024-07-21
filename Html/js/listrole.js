@@ -18,6 +18,27 @@ async function loadlistrole() {
 
 }
 
+async function deleterole(deleteroleid) {
+    let cr = confirm('Вы уверены, что хотите удалить роль?');
+    if (cr) {
+        let url = "https://localhost:5101/api/Role/" + deleteroleid;
+
+        let response = await fetch(url, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok === true) {
+            location.reload();
+        }
+        else {
+            let error = await response.json();
+            console.log(error.message);
+        }
+    }
+
+}
+
 function rolerow(role) {
 
     let tr = document.createElement("tr");
@@ -26,17 +47,6 @@ function rolerow(role) {
     let nameTd = document.createElement("td");
     nameTd.append(role.name);
     tr.append(nameTd);
-
-    /*
-    let linksTd = document.createElement("td");
-
-    const removeLink = document.createElement("button");
-    removeLink.append("Удалить");
-    removeLink.addEventListener("click", async () => await deleteRole(role.id));
-
-    linksTd.append(removeLink);
-    tr.appendChild(linksTd);
-    */
 
     let linksTd = document.createElement("td");
 
@@ -47,6 +57,16 @@ function rolerow(role) {
 
     linksTd.append(editLink);
     tr.appendChild(linksTd);
+
+    let removelinksTd = document.createElement("td");
+
+    const removeLink = document.createElement("button");
+    removeLink.className = "deletebutton";
+    removeLink.append("Удалить");
+    removeLink.addEventListener("click", async () => await deleterole(role.id));
+
+    removelinksTd.append(removeLink);
+    tr.appendChild(removelinksTd); 
 
     return tr;
 }

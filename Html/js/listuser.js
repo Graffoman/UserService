@@ -18,6 +18,27 @@ async function loadlistuser() {
 
 }
 
+async function deleteuser(deleteuserid) {
+    let cr = confirm('Вы уверены, что хотите удалить пользователя?');
+    if (cr) {
+        let url = "https://localhost:5101/api/User/" + deleteuserid;
+
+        let response = await fetch(url, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if (response.ok === true) {
+            location.reload();
+        }
+        else {
+            let error = await response.json();
+            console.log(error.message);
+        }
+    }
+
+}
+
 function userrow(user) {
 
     let tr = document.createElement("tr");
@@ -41,18 +62,7 @@ function userrow(user) {
 
     let emailTd = document.createElement("td");
     emailTd.append(user.email);
-    tr.append(emailTd);
-
-    /*
-    let linksTd = document.createElement("td");
- 
-    const removeLink = document.createElement("button");
-    removeLink.append("Удалить");
-    removeLink.addEventListener("click", async () => await deleteUser(user.id));
- 
-    linksTd.append(removeLink);
-    tr.appendChild(linksTd);
-    */
+    tr.append(emailTd);    
 
     let linksTd = document.createElement("td");
 
@@ -63,6 +73,16 @@ function userrow(user) {
 
     linksTd.append(editLink);
     tr.appendChild(linksTd);
+
+    let removelinksTd = document.createElement("td");
+
+    const removeLink = document.createElement("button");
+    removeLink.className = "deletebutton";
+    removeLink.append("Удалить");
+    removeLink.addEventListener("click", async () => await deleteuser(user.id));
+
+    removelinksTd.append(removeLink);
+    tr.appendChild(removelinksTd); 
 
     return tr;
 }

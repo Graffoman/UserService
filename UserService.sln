@@ -30,12 +30,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Html", "Html", "{F608B0E2-E645-4013-8422-9EAB77E1C408}"
 	ProjectSection(SolutionItems) = preProject
 		Html\addusertogroup.html = Html\addusertogroup.html
-		Html\group.html = Html\group.html
 		Html\addusertorole.html = Html\addusertorole.html
+		Html\group.html = Html\group.html
 		Html\index.html = Html\index.html
 		Html\listgroup.html = Html\listgroup.html
 		Html\listrole.html = Html\listrole.html
 		Html\listuser.html = Html\listuser.html
+		Html\newgroup.html = Html\newgroup.html
+		Html\newrole.html = Html\newrole.html
+		Html\newuser.html = Html\newuser.html
 		Html\role.html = Html\role.html
 		Html\user.html = Html\user.html
 	EndProjectSection
@@ -50,6 +53,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{C40DB03C-7497-
 		Html\js\listrole.js = Html\js\listrole.js
 		Html\js\listuser.js = Html\js\listuser.js
 		Html\js\login.js = Html\js\login.js
+		Html\js\newgroup.js = Html\js\newgroup.js
+		Html\js\newrole.js = Html\js\newrole.js
+		Html\js\newuser.js = Html\js\newuser.js
 		Html\js\role.js = Html\js\role.js
 		Html\js\user.js = Html\js\user.js
 	EndProjectSection
