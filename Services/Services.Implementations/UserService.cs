@@ -54,7 +54,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> ДТО пользователя. </returns>
-        public async Task<UserDto> GetByIdAsync(Guid id)
+        public async Task<UserDto>? GetByIdAsync(Guid id)
         {
             var user = await _userRepository.GetAsync(id, CancellationToken.None);
 
@@ -73,7 +73,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="userLoginDto"> ДТО логина пользователя </param>
         /// <returns> ДТО пользователя. </returns>
-        public async Task<UserDto> Login(UserLoginDto userLoginDto)
+        public async Task<UserDto>? Login(UserLoginDto userLoginDto)
         {
             string PasswordHash = CreateSHA256(userLoginDto.Password);
             var user = await _userRepository.LoginAsync(userLoginDto, PasswordHash);
@@ -148,7 +148,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="filterDto"> ДТО фильтра. </param>
         /// <returns> Список пользователей. </returns>
-        public async Task<ICollection<UserDto>> GetPagedAsync(UserFilterDto filterDto)
+        public async Task<ICollection<UserDto>>? GetPagedAsync(UserFilterDto filterDto)
         {
             ICollection<User> entities = await _userRepository.GetPagedAsync(filterDto);
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
@@ -158,7 +158,7 @@ namespace Services.Implementations
         /// Получить полный список.
         /// </summary>
         /// <returns> Список пользователей. </returns>
-        public async Task<ICollection<UserDto>> GetListAsync()
+        public async Task<ICollection<UserDto>>? GetListAsync()
         {
             ICollection<User> entities = await _userRepository.GetListAsync();
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
@@ -169,7 +169,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> Список групп  пользователя. </returns>
-        public async Task<ICollection<GroupDto>> GetGroupListAsync(Guid id)
+        public async Task<ICollection<GroupDto>>? GetGroupListAsync(Guid id)
         {
             ICollection<Group> entities = await _userRepository.GetGroupListAsync(id);
             return _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(entities);
@@ -180,7 +180,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> Список ролей пользователя. </returns>
-        public async Task<ICollection<RoleDto>> GetRoleListAsync(Guid id)
+        public async Task<ICollection<RoleDto>>? GetRoleListAsync(Guid id)
         {
             ICollection<Role> entities = await _userRepository.GetRoleListAsync(id);
             return _mapper.Map<ICollection<Role>, ICollection<RoleDto>>(entities);

@@ -32,7 +32,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Id сущности. </param>
         /// <returns> Cущность. </returns>
-        public virtual T Get(TPrimaryKey id)
+        public virtual T? Get(TPrimaryKey id)
         {
             return _entitySet.Find(id);
         }
@@ -43,9 +43,9 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Cущность. </returns>
-        public virtual async Task<T> GetAsync(TPrimaryKey id, CancellationToken cancellationToken)
+        public virtual async Task<T?> GetAsync(TPrimaryKey id, CancellationToken cancellationToken)
         {
-            return await _entitySet.FindAsync((object)id);
+            return await _entitySet.FindAsync(id);
         }
 
         #endregion
@@ -99,42 +99,6 @@ namespace Infrastructure.Repositories.Implementations
             return (await _entitySet.AddAsync(entity)).Entity;
         }
 
-        /// <summary>
-        /// Добавить в базу массив сущностей.
-        /// </summary>
-        /// <param name="entities"> Массив сущностей. </param>
-        public virtual void AddRange(List<T> entities)
-        {
-            var enumerable = entities as IList<T> ?? entities.ToList();
-            _entitySet.AddRange(enumerable);
-        }
-
-        /// <summary>
-        /// Добавить в базу массив сущностей.
-        /// </summary>
-        /// <param name="entities"> Массив сущностей. </param>
-        public virtual async Task AddRangeAsync(ICollection<T> entities)
-        {
-            if (entities == null || !entities.Any())
-            {
-                return;
-            }
-            await _entitySet.AddRangeAsync(entities);
-        }
-
-        #endregion
-
-        #region Update
-
-        /// <summary>
-        /// Для сущности проставить состояние - что она изменена.
-        /// </summary>
-        /// <param name="entity"> Сущность для изменения. </param>
-        public virtual void Update(T entity)
-        {
-            Context.Entry(entity).State = EntityState.Modified;
-        }
-
         #endregion
 
         #region Delete
@@ -158,30 +122,16 @@ namespace Infrastructure.Repositories.Implementations
         /// <summary>
         /// Удалить сущность.
         /// </summary>
-        /// <param name="entity"> Сущность для удаления. </param>
+        /// <param name="id"> Id удалённой сущности. </param>
         /// <returns> Была ли сущность удалена. </returns>
-        public virtual bool Delete(T entity)
+        public virtual async Task<bool> DeleteAsync(TPrimaryKey id)
         {
-            if (entity == null)
+            var obj = await  _entitySet.FindAsync(id);
+            if (obj == null)
             {
                 return false;
             }
-            Context.Entry(entity).State = EntityState.Deleted;
-            return true;
-        }
-
-        /// <summary>
-        /// Удалить сущности.
-        /// </summary>
-        /// <param name="entities"> Коллекция сущностей для удаления. </param>
-        /// <returns> Была ли операция завершена успешно. </returns>
-        public virtual bool DeleteRange(ICollection<T> entities)
-        {
-            if (entities == null || !entities.Any())
-            {
-                return false;
-            }
-            _entitySet.RemoveRange(entities);
+            _entitySet.Remove(obj);
             return true;
         }
 
@@ -195,7 +145,7 @@ namespace Infrastructure.Repositories.Implementations
         public virtual void SaveChanges()
         {
             Context.SaveChanges();
-        }
+         }
 
         /// <summary>
         /// Сохранить изменения.
@@ -203,6 +153,19 @@ namespace Infrastructure.Repositories.Implementations
         public virtual async Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             await Context.SaveChangesAsync(cancellationToken);
+        }
+
+        #endregion
+
+        #region Update
+
+        /// <summary>
+        /// Для сущности проставить состояние - что она изменена.
+        /// </summary>
+        /// <param name="entity"> Сущность для изменения. </param>
+        public virtual void Update(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         #endregion

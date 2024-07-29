@@ -37,7 +37,7 @@ namespace Services.Implementations
         /// <param name="id"> Идентификатор. </param>
         /// <param name="cancellationToken"> Токен отмены </param>
         /// <returns> ДТО группы. </returns>
-        public async Task<GroupDto> GetByIdAsync(Guid id)
+        public async Task<GroupDto>? GetByIdAsync(Guid id)
         {
             var group = await _groupRepository.GetAsync(id, CancellationToken.None);
             return _mapper.Map<Group, GroupDto>(group);
@@ -101,7 +101,7 @@ namespace Services.Implementations
         /// Получить полный список.
         /// </summary>
         /// <returns> Список групп. </returns>
-        public async Task<ICollection<GroupDto>> GetListAsync()
+        public async Task<ICollection<GroupDto>>? GetListAsync()
         {
             ICollection<Group> entities = await _groupRepository.GetListAsync();
             return _mapper.Map<ICollection<Group>, ICollection<GroupDto>>(entities);
@@ -112,7 +112,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор группы</param>
         /// <returns> Список  пользователей. </returns>
-        public async Task<ICollection<UserDto>> GetUserListAsync(Guid id)
+        public async Task<ICollection<UserDto>>? GetUserListAsync(Guid id)
         {
             ICollection<User> entities = await _groupRepository.GetUserListAsync(id);
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);

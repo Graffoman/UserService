@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Группа пользователя. </returns>
-        public override async Task<UserGroup> GetAsync(Guid id, CancellationToken cancellationToken)
+        public override async Task<UserGroup>? GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<UserGroup>().AsQueryable();
             //.Include(c => c.UserGroups).AsQueryable()
@@ -35,7 +35,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="userId"> ID пользователя. </param>     
         /// /// <param name="groupId"> ID группы. </param>  
         /// <returns> Пользователь. </returns>
-        public async Task<UserGroup> GetByUserIdGroupIdAsync(Guid userId, Guid groupId)
+        public async Task<UserGroup>? GetByUserIdGroupIdAsync(Guid userId, Guid groupId)
         {
             var query = GetAll();         
 

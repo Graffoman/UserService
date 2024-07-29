@@ -34,7 +34,7 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <param name="id"> Id сущности. </param>
         /// <returns> Cущность. </returns>
-        T Get(TPrimaryKey id);
+        T? Get(TPrimaryKey id);
 
         /// <summary>
         /// Получить сущность по Id.
@@ -42,7 +42,7 @@ namespace Services.Repositories.Abstractions
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Cущность. </returns>
-        Task<T> GetAsync(TPrimaryKey id, CancellationToken cancellationToken);
+        Task<T?> GetAsync(TPrimaryKey id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удалить сущность.
@@ -54,22 +54,9 @@ namespace Services.Repositories.Abstractions
         /// <summary>
         /// Удалить сущность.
         /// </summary>
-        /// <param name="entity"> Cущность для удаления. </param>
+        /// <param name="id"> Id удалённой сущности. </param>
         /// <returns> Была ли сущность удалена. </returns>
-        bool Delete(T entity);
-
-        /// <summary>
-        /// Удалить сущности.
-        /// </summary>
-        /// <param name="entities"> Коллекция сущностей для удаления. </param>
-        /// <returns> Была ли операция удаления успешна. </returns>
-        bool DeleteRange(ICollection<T> entities);
-
-        /// <summary>
-        /// Для сущности проставить состояние - что она изменена.
-        /// </summary>
-        /// <param name="entity"> Сущность для изменения. </param>
-        void Update(T entity);
+        Task<bool> DeleteAsync(TPrimaryKey id);
 
         /// <summary>
         /// Добавить в базу одну сущность.
@@ -86,18 +73,6 @@ namespace Services.Repositories.Abstractions
         Task<T> AddAsync(T entity);
 
         /// <summary>
-        /// Добавить в базу массив сущностей.
-        /// </summary>
-        /// <param name="entities"> Массив сущностей. </param>
-        void AddRange(List<T> entities);
-
-        /// <summary>
-        /// Добавить в базу массив сущностей.
-        /// </summary>
-        /// <param name="entities"> Массив сущностей. </param>
-        Task AddRangeAsync(ICollection<T> entities);
-
-        /// <summary>
         /// Сохранить изменения.
         /// </summary>
         void SaveChanges();
@@ -106,6 +81,12 @@ namespace Services.Repositories.Abstractions
         /// Сохранить изменения.
         /// </summary>
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Для сущности проставить состояние - что она изменена.
+        /// </summary>
+        /// <param name="entity"> Сущность для изменения. </param>
+        void Update(T entity);
     }
 }
 

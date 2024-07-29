@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Роль пользователя. </returns>
-        public override async Task<UserRole> GetAsync(Guid id, CancellationToken cancellationToken)
+        public override async Task<UserRole>? GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<UserRole>().AsQueryable();
             //.Include(c => c.UserRoles).AsQueryable();
@@ -35,7 +35,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="userId"> ID пользователя. </param>     
         /// /// <param name="roleId"> ID роли. </param>  
         /// <returns> Связь пользователя и роли. </returns>
-        public async Task<UserRole> GetByUserIdRoleIdAsync(Guid userId, Guid roleId)
+        public async Task<UserRole>? GetByUserIdRoleIdAsync(Guid userId, Guid roleId)
         {
             var query = GetAll();
 

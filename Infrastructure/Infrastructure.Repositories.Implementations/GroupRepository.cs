@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Группа. </returns>
-        public override async Task<Group> GetAsync(Guid id, CancellationToken cancellationToken)
+        public override async Task<Group>? GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<Group>().AsQueryable();
               //.Include(c => c.UserGroups).AsQueryable()
@@ -34,7 +34,7 @@ namespace Infrastructure.Repositories.Implementations
         /// Получить полный список.
         /// </summary>
         /// <returns> Список групп. </returns>
-        public async Task<List<Group>> GetListAsync()
+        public async Task<List<Group>>? GetListAsync()
         {
             var query = GetAll()
                  .Where(c => !c.Deleted);
@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор группы. </param>
         /// <returns> Список пользоваетелей. </returns>
-        public async Task<List<User>> GetUserListAsync(Guid id)
+        public async Task<List<User>>? GetUserListAsync(Guid id)
         {
             var users = Context.Set<User>().AsQueryable()
                             .Where(c => !c.Deleted);
@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор группы. </param>
         /// <returns> Список пользователей. </returns>
-        public async Task<List<User>> GetUserNotInGroupListAsync(Guid id)
+        public async Task<List<User>>? GetUserNotInGroupListAsync(Guid id)
         {
             var allusers = Context.Set<User>().AsQueryable()
                             .Where(c => !c.Deleted);

@@ -29,7 +29,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Пользователь. </returns>
-        public override async Task<User> GetAsync(Guid id, CancellationToken cancellationToken)
+        public override async Task<User>? GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<User>().AsQueryable();
             return await query.SingleOrDefaultAsync(c => c.Id == id);
@@ -42,7 +42,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="passwordHash"> Hash пароля пользователя</param>
         /// <param name="cancellationToken"></param>
         /// <returns> Пользователь. </returns>
-        public async Task<User> LoginAsync(UserLoginDto userLoginDto, string PasswordHash)
+        public async Task<User>? LoginAsync(UserLoginDto userLoginDto, string PasswordHash)
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
@@ -58,7 +58,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="filterDto"> ДТО фильтра. </param>
         /// <returns> Список пользователей. </returns>
-        public async Task<List<User>> GetPagedAsync(UserFilterDto filterDto)
+        public async Task<List<User>>? GetPagedAsync(UserFilterDto filterDto)
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
@@ -84,7 +84,7 @@ namespace Infrastructure.Repositories.Implementations
         /// Получить полный список.
         /// </summary>
         /// <returns> Список пользователей. </returns>
-        public async Task<List<User>> GetListAsync()
+        public async Task<List<User>>? GetListAsync()
         {
             var query = GetAll()
                 .Where(c => !c.Deleted);
@@ -96,7 +96,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> Список групп. </returns>
-        public async Task<List<Group>> GetGroupListAsync(Guid id)
+        public async Task<List<Group>>? GetGroupListAsync(Guid id)
         {
             var groups = Context.Set<Group>().AsQueryable()
                             .Where(c => !c.Deleted);
@@ -115,7 +115,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> Список ролей. </returns>
-        public async Task<List<Role>> GetRoleListAsync(Guid id)
+        public async Task<List<Role>>? GetRoleListAsync(Guid id)
         {
             var roles = Context.Set<Role>().AsQueryable()
                             .Where(c => !c.Deleted);

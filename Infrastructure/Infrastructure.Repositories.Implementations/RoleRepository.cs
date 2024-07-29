@@ -22,7 +22,7 @@ namespace Infrastructure.Repositories.Implementations
         /// <param name="id"> Id сущности. </param>
         /// <param name="cancellationToken"></param>
         /// <returns> Группа. </returns>
-        public override async Task<Role> GetAsync(Guid id, CancellationToken cancellationToken)
+        public override async Task<Role>? GetAsync(Guid id, CancellationToken cancellationToken)
         {
             var query = Context.Set<Role>().AsQueryable();
             //.Include(c => c.UserGroups).AsQueryable()
@@ -34,7 +34,7 @@ namespace Infrastructure.Repositories.Implementations
         /// Получить полный список.
         /// </summary>
         /// <returns> Список ролей. </returns>
-        public async Task<List<Role>> GetListAsync()
+        public async Task<List<Role>>? GetListAsync()
         {
             var query = GetAll()
                  .Where(c => !c.Deleted);
@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор роли. </param>
         /// <returns> Список пользоваетелей. </returns>
-        public async Task<List<User>> GetUserListAsync(Guid id)
+        public async Task<List<User>>? GetUserListAsync(Guid id)
         {
             var users = Context.Set<User>().AsQueryable()
                             .Where(c => !c.Deleted);
@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор роли. </param>
         /// <returns> Список пользоваетелей. </returns>
-        public async Task<List<User>> GetUserNotInRoleListAsync(Guid id)
+        public async Task<List<User>>? GetUserNotInRoleListAsync(Guid id)
         {
             var allusers = Context.Set<User>().AsQueryable()
                             .Where(c => !c.Deleted);
