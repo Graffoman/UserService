@@ -38,7 +38,7 @@ namespace Services.Implementations
         /// <param name="id"> Идентификатор. </param>
         /// <param name="cancellationToken"> Токен отмены </param>
         /// <returns> ДТО роли. </returns>
-        public async Task<RoleDto>? GetByIdAsync(Guid id)
+        public async Task<RoleDto?> GetByIdAsync(Guid id)
         {
             var role = await _roleRepository.GetAsync(id, CancellationToken.None);
             return _mapper.Map<Role, RoleDto>(role);
@@ -102,7 +102,7 @@ namespace Services.Implementations
         /// Получить полный список ролей.
         /// </summary>
         /// <returns> Список ролей. </returns>
-        public async Task<ICollection<RoleDto>>? GetListAsync()
+        public async Task<ICollection<RoleDto>> GetListAsync()
         {
             ICollection<Role> entities = await _roleRepository.GetListAsync();
             return _mapper.Map<ICollection<Role>, ICollection<RoleDto>>(entities);
@@ -113,7 +113,7 @@ namespace Services.Implementations
         /// </summary>
         /// <param name="id"> Идентификатор роли </param>
         /// <returns> Список пользователей. </returns>
-        public async Task<ICollection<UserDto>>? GetUserListAsync(Guid id)
+        public async Task<ICollection<UserDto>> GetUserListAsync(Guid id)
         {
             ICollection<User> entities = await _roleRepository.GetUserListAsync(id);
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);

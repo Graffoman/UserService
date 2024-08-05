@@ -20,7 +20,7 @@ namespace Services.Abstractions
         /// <param name="id"> Идентификатор. </param>
         /// <param name="cancellationToken"> Токен отмены </param>
         /// <returns> ДТО роли. </returns>
-        Task<RoleDto> GetByIdAsync(Guid id);
+        Task<RoleDto?> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Создать роль.

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MassTransit.Futures.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Services.Contracts.Group;
@@ -65,7 +66,7 @@ namespace WebApi.Controllers
             if (await _service.GetByIdAsync(id) == null)
                 return NotFound();
             await _service.DeleteAsync(id);
-            return NoContent();
+            return Ok();
         }
 
         [HttpPost("list")]

@@ -18,7 +18,7 @@ namespace Services.Abstractions
         /// </summary>
         /// <param name="id"> Идентификатор. </param>       
         /// <returns> ДТО группы. </returns>
-        Task<GroupDto> GetByIdAsync(Guid id);
+        Task<GroupDto?> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Создать группу.

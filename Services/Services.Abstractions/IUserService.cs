@@ -16,14 +16,14 @@ namespace Services.Abstractions
         /// </summary>
         /// <param name="id"> Идентификатор. </param>
         /// <returns> ДТО пользователя. </returns>
-        Task<UserDto> GetByIdAsync(Guid id);
+        Task<UserDto?> GetByIdAsync(Guid id);
 
         /// <summary>
         /// Получить пользователя по e-mail и паролю.
         /// </summary>
         /// <param name="userLoginDto"> Дто логина пользователя </param>        
         /// <returns> ДТО пользователя. </returns>
-        Task<UserDto> Login(UserLoginDto userLoginDto);
+        Task<UserDto?> Login(UserLoginDto userLoginDto);
 
         /// <summary>
         /// Создать пользователя.
