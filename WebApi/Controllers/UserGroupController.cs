@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
+using Services.Contracts.Role;
 using Services.Contracts.UserGroup;
+using WebApi.Models.Role;
 using WebApi.Models.UserGroup;
 
 namespace WebApi.Controllers
@@ -23,12 +25,18 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("addusertogroup")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> AddUserToGroupAsync(CreatingUserGroupModel userGroupModel)
-        {
+        {  
             return Ok(await _service.AddUserToGroupAsync(_mapper.Map<CreatingUserGroupDto>(userGroupModel)));
         }
 
-        [HttpPost("deleteuserfromgroup")]
+        [HttpDelete("deleteuserfromgroup")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteUserFromGroupAsync(CreatingUserGroupModel userGroupModel)
         {
             await _service.DeleteUserFromGroupAsync(_mapper.Map<CreatingUserGroupDto>(userGroupModel));

@@ -1,6 +1,6 @@
 async function login(useremail, userpassword) {
 
-    let response = await fetch("https://localhost:5101/api/User/login", {
+    let response = await fetch("https://localhost:5101/api/Autentification/login", {
         method: "POST",
         headers: {"Content-Type": "application/json" },
         body: JSON.stringify({

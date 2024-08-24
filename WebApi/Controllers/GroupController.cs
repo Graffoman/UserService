@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MassTransit.Futures.Contracts;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Services.Contracts.Group;
@@ -66,17 +65,17 @@ namespace WebApi.Controllers
             if (await _service.GetByIdAsync(id) == null)
                 return NotFound();
             await _service.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
 
-        [HttpPost("list")]
+        [HttpGet("list")]
         [ProducesResponseType(typeof(IEnumerable<GroupModel>), 200)]
         public async Task<IActionResult> GetListAsync()
         {
             return Ok(_mapper.Map<List<GroupModel>>(await _service.GetListAsync()));
         }
 
-        [HttpPost("userlist")]
+        [HttpGet("userlist")]
         [ProducesResponseType(typeof(IEnumerable<UserModel>), 200)]
         public async Task<IActionResult> GetUserListAsync(Guid id)
         {
@@ -84,7 +83,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost("usernotingrouplist")]
+        [HttpGet("usernotingrouplist")]
         [ProducesResponseType(typeof(IEnumerable<UserModel>), 200)]
         public async Task<IActionResult> GetUserNotInRoleListAsync(Guid id)
         {

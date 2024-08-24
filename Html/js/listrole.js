@@ -2,7 +2,7 @@ async function loadlistrole() {
     let url = "https://localhost:5101/api/Role/list";
 
     let response = await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" }
     });
 

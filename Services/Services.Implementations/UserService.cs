@@ -86,6 +86,7 @@ namespace Services.Implementations
         /// <param name="creatingUserDto"> ДТО создаваемого пользователя. </param>
         public async Task<Guid> CreateAsync(CreatingUserDto creatingUserDto)
         {
+            
             var user = _mapper.Map<CreatingUserDto, User>(creatingUserDto);
             user.Id = Guid.NewGuid();
             user.PasswordHash = CreateSHA256(creatingUserDto.Password);

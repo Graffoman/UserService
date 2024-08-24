@@ -23,12 +23,18 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("adduserrole")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> AddUserToRoleAsync(CreatingUserRoleModel userRoleModel)
         {
             return Ok(await _service.AddUserToRoleAsync(_mapper.Map<CreatingUserRoleDto>(userRoleModel)));
         }
 
-        [HttpPost("deleteuserrole")]
+        [HttpDelete("deleteuserrole")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> DeleteUserFromRoleAsync(CreatingUserRoleModel userRoleModel)
         {
             await _service.DeleteUserFromRoleAsync(_mapper.Map<CreatingUserRoleDto>(userRoleModel));

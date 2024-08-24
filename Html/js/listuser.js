@@ -2,7 +2,7 @@ async function loadlistuser() {
     let url = "https://localhost:5101/api/User/list";
 
     let response = await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" }
     });
 

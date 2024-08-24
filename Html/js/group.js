@@ -20,7 +20,7 @@ async function loadgroupinfo(loadgroupid) {
     let urluserlist = "https://localhost:5101/api/Group/userlist?id=" + loadgroupid;
 
     let responseuserlist = await fetch(urluserlist, {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" }
     });
 
@@ -42,7 +42,7 @@ async function deleteUserGroup(deleteuserid, deletegroupid) {
         let url = "https://localhost:5101/api/UserGroup/deleteuserfromgroup";
 
         let response = await fetch(url, {
-            method: "POST",
+            method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 userId: deleteuserid,

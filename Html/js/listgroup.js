@@ -2,7 +2,7 @@ async function loadlistgroup() {
     let url = "https://localhost:5101/api/Group/list";
 
     let response = await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" }
     });
 
