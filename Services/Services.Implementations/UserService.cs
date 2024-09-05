@@ -139,7 +139,8 @@ namespace Services.Implementations
                 UserId = user.Id.ToString(),
                 FirstName = creatingUserDto.Name,
                 LastName = creatingUserDto.LastName,
-                Department = creatingUserDto.Department
+                Department = creatingUserDto.Department,
+                Email = creatingUserDto.Email
             };
             var message = JsonConvert.SerializeObject(rmquser);
             _rabbitMqProducer.SendMessage(message);
@@ -190,7 +191,8 @@ namespace Services.Implementations
                 UserId = id.ToString(),
                 FirstName = user.Name,
                 LastName = user.LastName,
-                Department = user.Department
+                Department = user.Department,
+                Email = user.Email
             };
             var message = JsonConvert.SerializeObject(rmquser);
             _rabbitMqProducer.SendMessage(message);
