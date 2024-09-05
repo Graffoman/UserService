@@ -15,6 +15,10 @@ using Services.Contracts.UserRole;
 using System.Text;
 using Services.Contracts.Group;
 using Services.Contracts.Role;
+using Newtonsoft.Json;
+using RabbitMQ.Abstractions;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace Services.Implementations
 {
@@ -27,15 +31,18 @@ namespace Services.Implementations
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
         private readonly IBusControl _busControl;
+        private readonly IRabbitMqProducer _rabbitMqProducer;
 
         public UserService(
             IMapper mapper,
             IUserRepository userRepository,
-            IBusControl busControl)
+            IBusControl busControl,
+            IRabbitMqProducer rabbitMqProducer)
         {
             _mapper = mapper;
             _userRepository = userRepository;
             _busControl = busControl;
+            _rabbitMqProducer = rabbitMqProducer;
         }
 
         /// <summary>
@@ -47,6 +54,30 @@ namespace Services.Implementations
         {
             using SHA256 hash = SHA256.Create();
             return Convert.ToHexString(hash.ComputeHash(Encoding.UTF8.GetBytes(input)));
+        }
+
+        /// <summary>
+        /// Функция валидации email
+        /// </summary>
+        /// /// <param name="email> email </param>
+        /// <returns> Хэш пароля. </returns>
+        public static bool IsEmailValid(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false; // suggested by @TK-421
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -86,18 +117,33 @@ namespace Services.Implementations
         /// <param name="creatingUserDto"> ДТО создаваемого пользователя. </param>
         public async Task<Guid> CreateAsync(CreatingUserDto creatingUserDto)
         {
-            
+            var testuser = await _userRepository.GetByEmailAsync(creatingUserDto.Email, CancellationToken.None);
+            if (testuser != null)
+            {
+                throw new Exception($"Пользователь с email {creatingUserDto.Email} уже существует");
+            }
+
+            if (!IsEmailValid(creatingUserDto.Email))
+            {
+                throw new Exception($"Email {creatingUserDto.Email} невалиден");
+            }
+
             var user = _mapper.Map<CreatingUserDto, User>(creatingUserDto);
             user.Id = Guid.NewGuid();
             user.PasswordHash = CreateSHA256(creatingUserDto.Password);
             var createdUser = await _userRepository.AddAsync(user);
             await _userRepository.SaveChangesAsync();
-            /*
-            await _busControl.Publish(new MessageDto
+
+            var rmquser = new UserMessage
             {
-                Content = $"User {createdUser.Id} with name {createdUser.Name} is added"
-            });
-            */
+                UserId = user.Id.ToString(),
+                FirstName = creatingUserDto.Name,
+                LastName = creatingUserDto.LastName,
+                Department = creatingUserDto.Department
+            };
+            var message = JsonConvert.SerializeObject(rmquser);
+            _rabbitMqProducer.SendMessage(message);
+
             return createdUser.Id;
         }
 
@@ -113,6 +159,17 @@ namespace Services.Implementations
             {
                 throw new Exception($"Пользователь с идентфикатором {id} не найден");
             }
+           
+            if (!IsEmailValid(updatingUserDto.Email))
+            {
+                throw new Exception($"Email {updatingUserDto.Email} невалиден");
+            }                
+
+            var testuser = await _userRepository.GetByEmailAsync(updatingUserDto.Email, CancellationToken.None);
+            if (!testuser.Id.Equals(id))
+            {
+                throw new Exception($"Пользователь с email {updatingUserDto.Email} уже существует");
+            }
 
             user.Name = updatingUserDto.Name;
             user.LastName = updatingUserDto.LastName;
@@ -127,6 +184,16 @@ namespace Services.Implementations
 
             _userRepository.Update(user);
             await _userRepository.SaveChangesAsync();
+
+            var rmquser = new UserMessage
+            {
+                UserId = id.ToString(),
+                FirstName = user.Name,
+                LastName = user.LastName,
+                Department = user.Department
+            };
+            var message = JsonConvert.SerializeObject(rmquser);
+            _rabbitMqProducer.SendMessage(message);
         }
 
         /// <summary>

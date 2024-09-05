@@ -14,6 +14,7 @@ using Domain.Entities;
 using Services.Contracts.Role;
 using Newtonsoft.Json;
 using RabbitMQ.Abstractions;
+using System.Net;
 
 namespace WebApi.Controllers
 {
@@ -23,16 +24,13 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _service;
         private readonly IMapper _mapper;
-        private readonly IRabbitMqProducer _rabbitMqProducer;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserService service, ILogger<UserController> logger, IMapper mapper, IRabbitMqProducer rabbitMqProducer)
+        public UserController(IUserService service, ILogger<UserController> logger, IMapper mapper)
         {
             _service = service;
             _logger = logger;
-            _mapper = mapper;
-            _rabbitMqProducer = rabbitMqProducer;
-
+            _mapper = mapper;  
         }
 
         [HttpGet("{id}")]
@@ -53,17 +51,8 @@ namespace WebApi.Controllers
         public async Task<IActionResult> CreateAsync(CreatingUserModel userModel)
         {
             var userid = await _service.CreateAsync(_mapper.Map<CreatingUserDto>(userModel));
-            
-            var user = new RabbitMQ.Abstractions.User
-            {
-                UserId = userid.ToString(),
-                FirstName = userModel.Name,
-                LastName = userModel.Email,
-                Department = userModel.Department
-            };
-            var message = JsonConvert.SerializeObject(user);
-            _rabbitMqProducer.SendMessage(message);
-
+            if (userid == Guid.Empty)
+                return BadRequest();
             return Ok(userid);
         }
 

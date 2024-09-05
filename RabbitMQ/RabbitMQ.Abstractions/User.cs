@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RabbitMQ.Abstractions
 {
-    public class User
+    public class UserMessage
     {
         public string UserId { get; set; }
         public string FirstName { get; set; }

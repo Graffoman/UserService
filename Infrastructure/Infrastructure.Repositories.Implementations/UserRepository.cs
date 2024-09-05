@@ -128,6 +128,18 @@ namespace Infrastructure.Repositories.Implementations
 
             return await roles.ToListAsync();
         }
+
+        /// <summary>
+        /// Получить пользователя по email
+        /// </summary>
+        /// <param name="email"> email пользователя. </param>
+        /// <param name="cancellationToken"></param>
+        /// <returns> Пользователь. </returns>
+        public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
+        {
+            var query = Context.Set<User>().AsQueryable();
+            return await query.SingleOrDefaultAsync(c => c.Email == email);
+        }
     }
     
 }

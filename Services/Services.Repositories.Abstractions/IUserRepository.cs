@@ -25,7 +25,7 @@ namespace Services.Repositories.Abstractions
         /// </summary>
         /// <param name="userSigningInDto"> ДТО логина. </param>       
         /// <returns> Пользователь. </returns>
-        Task<User> LoginAsync(UserLoginDto userLoginDto, string PasswordHash);
+        Task<User?> LoginAsync(UserLoginDto userLoginDto, string PasswordHash);
 
         /// <summary>
         /// Получить полный список.
@@ -46,6 +46,14 @@ namespace Services.Repositories.Abstractions
         /// <param name="id"> Идентификатор. </param>
         /// <returns> Список ролей. </returns>
         Task<List<Role>> GetRoleListAsync(Guid id);
+
+        /// <summary>
+        /// Получить пользователя по email
+        /// </summary>
+        /// <param name="email"> email пользователя. </param>
+        /// <param name="cancellationToken"></param>
+        /// <returns> Пользователь. </returns>
+        Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken);
 
     }
 }
