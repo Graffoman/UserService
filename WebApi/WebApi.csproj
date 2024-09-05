@@ -19,19 +19,24 @@
     <PackageReference Include="MassTransit" Version="8.2.2" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="QuestionnaireRabbitMQServices" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.EntityFramework\Infrastructure.EntityFramework.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.Repositories.Implementations\Infrastructure.Repositories.Implementations.csproj" />
+    <ProjectReference Include="..\RabbitMQ\RabbitMQ.Abstractions\RabbitMQ.Abstractions.csproj" />
+    <ProjectReference Include="..\RabbitMQ\RabbitMQ.Implementations\RabbitMQ.Implementations.csproj" />
     <ProjectReference Include="..\Services\Services.Abstractions\Services.Abstractions.csproj" />
     <ProjectReference Include="..\Services\Services.Implementations\Services.Implementations.csproj" />
   </ItemGroup>

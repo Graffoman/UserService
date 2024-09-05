@@ -1,6 +1,9 @@
 using AutoMapper;
+using Newtonsoft.Json;
+using RabbitMQ.Implementations;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -26,16 +29,19 @@ namespace WebApi
         {
             InstallAutomapper(services);
             services.AddServices(Configuration);
-            services.AddControllers();
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen();
-            
+            services.AddControllers()
+                    .AddNewtonsoftJson(options => options.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto)
+                    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             services.AddMassTransit(x => {
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     ConfigureRmq(cfg, Configuration);
                 });
             });
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();   
             services.AddCors();
         }
 

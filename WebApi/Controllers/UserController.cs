@@ -12,6 +12,8 @@ using WebApi.Models.Role;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Domain.Entities;
 using Services.Contracts.Role;
+using Newtonsoft.Json;
+using RabbitMQ.Abstractions;
 
 namespace WebApi.Controllers
 {
@@ -21,13 +23,16 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _service;
         private readonly IMapper _mapper;
+        private readonly IRabbitMqProducer _rabbitMqProducer;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserService service, ILogger<UserController> logger, IMapper mapper)
+        public UserController(IUserService service, ILogger<UserController> logger, IMapper mapper, IRabbitMqProducer rabbitMqProducer)
         {
             _service = service;
             _logger = logger;
             _mapper = mapper;
+            _rabbitMqProducer = rabbitMqProducer;
+
         }
 
         [HttpGet("{id}")]
@@ -39,7 +44,7 @@ namespace WebApi.Controllers
             var user = await _service.GetByIdAsync(id);
             if (user == null)
                 return NotFound();
-            return Ok(_mapper.Map<UserModel>(user));
+            return Ok(_mapper.Map<UserModel>(user));           
         }
 
         [HttpPost]
@@ -47,7 +52,19 @@ namespace WebApi.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateAsync(CreatingUserModel userModel)
         {
-            return Ok(await _service.CreateAsync(_mapper.Map<CreatingUserDto>(userModel)));
+            var userid = await _service.CreateAsync(_mapper.Map<CreatingUserDto>(userModel));
+            
+            var user = new RabbitMQ.Abstractions.User
+            {
+                UserId = userid.ToString(),
+                FirstName = userModel.Name,
+                LastName = userModel.Email,
+                Department = userModel.Department
+            };
+            var message = JsonConvert.SerializeObject(user);
+            _rabbitMqProducer.SendMessage(message);
+
+            return Ok(userid);
         }
 
         [HttpPut("{id}")]

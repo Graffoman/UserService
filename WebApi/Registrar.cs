@@ -6,6 +6,8 @@ using Services.Abstractions;
 using Services.Implementations;
 using Services.Repositories.Abstractions;
 using WebApi.Settings;
+using RabbitMQ.Abstractions;
+using RabbitMQ.Implementations;
 
 namespace WebApi
 {
@@ -17,11 +19,16 @@ namespace WebApi
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationSettings = configuration.Get<ApplicationSettings>();
+            var rabbitMqSettings = configuration.GetSection("RabbitSettings").Get<RabbitSettings>();
+
             services.AddSingleton(applicationSettings)
+                    .AddSingleton(rabbitMqSettings)
                     .AddSingleton((IConfigurationRoot)configuration)
                     .InstallServices()
                     .ConfigureContext(applicationSettings.ConnectionString)
-                    .InstallRepositories();
+                    .InstallRepositories()
+                    .InstallRabbitMQ();
+            
             return services;
         }
         
@@ -44,6 +51,13 @@ namespace WebApi
                 .AddTransient<IUserGroupRepository, UserGroupRepository>()
                 .AddTransient<IRoleRepository, RoleRepository>()
                 .AddTransient<IUserRoleRepository, UserRoleRepository>();
+            return serviceCollection;
+        }
+
+        private static IServiceCollection InstallRabbitMQ(this IServiceCollection serviceCollection)
+        {
+            serviceCollection                
+                .AddTransient<IRabbitMqProducer, RabbitMqProducer>();
             return serviceCollection;
         }
     }
