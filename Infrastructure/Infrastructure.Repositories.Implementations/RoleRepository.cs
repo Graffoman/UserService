@@ -2,15 +2,10 @@
 using Domain.Entities;
 using Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    public class RoleRepository :Repository<Role, Guid>, IRoleRepository
+	public class RoleRepository :Repository<Role, Guid>, IRoleRepository
     {
         public RoleRepository(DatabaseContext context) : base(context)
         {

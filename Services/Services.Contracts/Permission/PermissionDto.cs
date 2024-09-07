@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Services.Contracts.Role;
+﻿using Services.Contracts.Role;
 
 namespace Services.Contracts.Permission
 {
-    /// <summary>
-    /// ДТО Роли.
-    /// </summary>
-    public class PermissionDto
+	/// <summary>
+	/// ДТО Роли.
+	/// </summary>
+	public class PermissionDto
     {
         /// <summary>
         /// Идентификатор.

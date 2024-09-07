@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Services.Contracts.UserRole;
+﻿using Services.Contracts.UserRole;
 
 namespace Services.Abstractions
 {
-    /// <summary>
-    /// Интерфейс сервиса работы с ролями пользователей.
-    /// </summary>
-    public interface IUserRoleService
+	/// <summary>
+	/// Интерфейс сервиса работы с ролями пользователей.
+	/// </summary>
+	public interface IUserRoleService
     {
         /// <summary>
         /// Добавить роль пользователю.

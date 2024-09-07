@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using Services.Contracts.Role;
+﻿using Services.Contracts.Role;
 using Services.Contracts.Group;
-using Services.Contracts.UserGroup;
-using Services.Contracts.UserRole;
 
 namespace Services.Contracts.User
 {
-    /// <summary>
-    /// ДТО курса.
-    /// </summary>
-    public class UserDto
+	/// <summary>
+	/// ДТО курса.
+	/// </summary>
+	public class UserDto
     {
         /// <summary>
         /// Идентификатор.

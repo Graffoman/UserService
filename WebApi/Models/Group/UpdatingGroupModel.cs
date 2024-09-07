@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WebApi.Models.Group
+﻿namespace WebApi.Models.Group
 {
     public class UpdatingGroupModel
     {

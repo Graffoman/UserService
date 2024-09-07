@@ -1,8 +1,6 @@
-﻿using System;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.EntityFramework
 {
@@ -114,7 +112,5 @@ namespace Infrastructure.EntityFramework
             //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=userservice;UserId=postgres;Password=admin");
             optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         }
-
-
     }
 }

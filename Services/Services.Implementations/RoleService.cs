@@ -1,35 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Services.Abstractions;
 using AutoMapper;
-using CommonNamespace;
 using Domain.Entities;
-using MassTransit;
 using Services.Contracts.Role;
-using static MassTransit.Logging.OperationName;
-using System.Security.Cryptography;
 using Services.Contracts.User;
-using Services.Contracts.Role;
 
 namespace Services.Implementations
 {
-    public class RoleService : IRoleService
+	public class RoleService : IRoleService
     {
         private readonly IMapper _mapper;
         private readonly IRoleRepository _roleRepository;
-        private readonly IBusControl _busControl;
 
         public RoleService(
             IMapper mapper,
-            IRoleRepository roleRepository,
-            IBusControl busControl)
+            IRoleRepository roleRepository)
         {
             _mapper = mapper;
             _roleRepository = roleRepository;
-            _busControl = busControl;
         }
 
         /// <summary>
@@ -55,12 +43,7 @@ namespace Services.Implementations
             role.Id = Guid.NewGuid();
             var createdRole = await _roleRepository.AddAsync(role);
             await _roleRepository.SaveChangesAsync();
-            /*
-            await _busControl.Publish(new MessageDto
-            {
-                Content = $"Role {createdRole.Id} with name {createdRole.Name} is added"
-            });
-            */
+
             return createdRole.Id;
         }
 
@@ -129,5 +112,5 @@ namespace Services.Implementations
             ICollection<User> entities = await _roleRepository.GetUserNotInRoleListAsync(id);
             return _mapper.Map<ICollection<User>, ICollection<UserDto>>(entities);
         }
-}
+    }
 }

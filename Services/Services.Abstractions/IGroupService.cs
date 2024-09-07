@@ -1,17 +1,12 @@
 ﻿using Services.Contracts.Group;
 using Services.Contracts.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Abstractions
 {
-    /// <summary>
-    /// Интерфейс сервиса работы с группами.
-    /// </summary>
-    public interface IGroupService
+	/// <summary>
+	/// Интерфейс сервиса работы с группами.
+	/// </summary>
+	public interface IGroupService
     {
         /// <summary>
         /// Получить группу. 

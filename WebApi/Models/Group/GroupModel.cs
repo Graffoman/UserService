@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using WebApi.Models.UserGroup;
-
-
-namespace WebApi.Models.Group
+﻿namespace WebApi.Models.Group
 {
     public class GroupModel
     {

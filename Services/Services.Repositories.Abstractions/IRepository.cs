@@ -1,17 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Services.Repositories.Abstractions
 {
-    /// <summary>
-    /// Описания общих методов для всех репозиториев.
-    /// </summary>
-    /// <typeparam name="T"> Тип Entity для репозитория. </typeparam>
-    /// <typeparam name="TPrimaryKey"> Тип первичного ключа. </typeparam>
-    public interface IRepository<T, TPrimaryKey>
+	/// <summary>
+	/// Описания общих методов для всех репозиториев.
+	/// </summary>
+	/// <typeparam name="T"> Тип Entity для репозитория. </typeparam>
+	/// <typeparam name="TPrimaryKey"> Тип первичного ключа. </typeparam>
+	public interface IRepository<T, TPrimaryKey>
         where T : IEntity<TPrimaryKey>
     {
         /// <summary>

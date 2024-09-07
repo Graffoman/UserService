@@ -1,15 +1,11 @@
 ﻿using Domain.Entities;
 using Infrastructure.EntityFramework;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 using Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using Services.Contracts.UserGroup;
-using Services.Contracts.UserRole;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    public class UserGroupRepository : Repository<UserGroup, Guid>, IUserGroupRepository
+	public class UserGroupRepository : Repository<UserGroup, Guid>, IUserGroupRepository
     {
         public UserGroupRepository(DatabaseContext context) : base(context)
         {

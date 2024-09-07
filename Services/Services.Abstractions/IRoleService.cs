@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Services.Contracts.Group;
-using Services.Contracts.Role;
+﻿using Services.Contracts.Role;
 using Services.Contracts.User;
 
 namespace Services.Abstractions
 {
-    /// <summary>
-    /// Интерфейс сервиса работы с ролями.
-    /// </summary>
-    public interface IRoleService
+	/// <summary>
+	/// Интерфейс сервиса работы с ролями.
+	/// </summary>
+	public interface IRoleService
     {
         /// <summary>
         /// Получить роль. 

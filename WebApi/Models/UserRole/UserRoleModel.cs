@@ -1,16 +1,10 @@
 ﻿using WebApi.Models.Role;
 using WebApi.Models.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebApi.Models.UserRole
 {
     public class UserRoleModel
     {
-
         /// <summary>
         /// Идентификатор.
         /// </summary>

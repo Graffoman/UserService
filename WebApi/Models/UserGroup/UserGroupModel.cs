@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WebApi.Models.User;
+﻿using WebApi.Models.User;
 using WebApi.Models.Group;
 
 namespace WebApi.Models.UserGroup

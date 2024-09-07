@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Domain.Entities;
 using Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
-using Services.Contracts.Group;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    public class GroupRepository : Repository<Group, Guid>, IGroupReposotory
+	public class GroupRepository : Repository<Group, Guid>, IGroupReposotory
     {
         public GroupRepository(DatabaseContext context) : base(context)
         {

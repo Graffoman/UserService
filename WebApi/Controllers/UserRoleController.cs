@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Services.Contracts.UserRole;
@@ -7,7 +6,7 @@ using WebApi.Models.UserRole;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
     [ApiController]
     public class UserRoleController : ControllerBase
     {

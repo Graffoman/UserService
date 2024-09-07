@@ -1,7 +1,5 @@
 ﻿using Infrastructure.EntityFramework;
 using Infrastructure.Repositories.Implementations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Services.Abstractions;
 using Services.Implementations;
 using Services.Repositories.Abstractions;

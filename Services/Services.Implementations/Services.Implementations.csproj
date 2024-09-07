@@ -8,16 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.9.1" />
-    <PackageReference Include="MassTransit" Version="8.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Domain.Entities\Domain.Entities.csproj" />
     <ProjectReference Include="..\..\RabbitMQ\RabbitMQ.Abstractions\RabbitMQ.Abstractions.csproj" />
-    <ProjectReference Include="..\..\RabbitMQ\RabbitMQ.Implementations\RabbitMQ.Implementations.csproj" />
     <ProjectReference Include="..\Services.Abstractions\Services.Abstractions.csproj" />
     <ProjectReference Include="..\Services.Repositories.Abstractions\Services.Repositories.Abstractions.csproj" />
   </ItemGroup>

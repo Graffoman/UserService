@@ -1,17 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Services.Contracts.User;
-using Services.Contracts.Group;
-using Services.Contracts.UserGroup;
-using Services.Contracts.UserRole;
 
 namespace Services.Repositories.Abstractions
 {
-    /// <summary>
-    /// Репозиторий работы с пользователями.
-    /// </summary>
-    public interface IUserRepository: IRepository<User, Guid>
+	/// <summary>
+	/// Репозиторий работы с пользователями.
+	/// </summary>
+	public interface IUserRepository: IRepository<User, Guid>
     {
         /// <summary>
         /// Получить постраничный список.

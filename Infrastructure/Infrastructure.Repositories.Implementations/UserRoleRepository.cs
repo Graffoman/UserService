@@ -2,15 +2,10 @@
 using Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Services.Repositories.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    public class UserRoleRepository : Repository<UserRole, Guid>, IUserRoleRepository
+	public class UserRoleRepository : Repository<UserRole, Guid>, IUserRoleRepository
     {
         public UserRoleRepository(DatabaseContext context) : base(context)
         {

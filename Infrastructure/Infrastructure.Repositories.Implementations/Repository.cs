@@ -1,19 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    /// <summary>
-    /// Репозиторий.
-    /// </summary>
-    /// <typeparam name="T"> Тип сущности. </typeparam>
-    /// <typeparam name="TPrimaryKey"> Тип первичного ключа. </typeparam>
-    public abstract class Repository<T, TPrimaryKey> : IRepository<T, TPrimaryKey> where T
+	/// <summary>
+	/// Репозиторий.
+	/// </summary>
+	/// <typeparam name="T"> Тип сущности. </typeparam>
+	/// <typeparam name="TPrimaryKey"> Тип первичного ключа. </typeparam>
+	public abstract class Repository<T, TPrimaryKey> : IRepository<T, TPrimaryKey> where T
         : class, IEntity<TPrimaryKey>
     {
         protected readonly DbContext Context;

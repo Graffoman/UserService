@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using MassTransit.Futures.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Services.Contracts.Group;

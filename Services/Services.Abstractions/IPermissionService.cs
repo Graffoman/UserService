@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Services.Contracts.Permission;
 
 namespace Services.Abstractions
 {
-    /// <summary>
-    /// Интерфейс сервиса работы с правами доступа.
-    /// </summary>
-    public interface IPermissionService
+	/// <summary>
+	/// Интерфейс сервиса работы с правами доступа.
+	/// </summary>
+	public interface IPermissionService
     {
         /// <summary>
         /// Получить право доступа. 

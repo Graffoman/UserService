@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Services.Contracts.UserGroup;
+﻿using Services.Contracts.UserGroup;
 
 namespace Services.Abstractions
 {
-    /// <summary>
-    /// Интерфейс сервиса работы с группами пользователя.
-    /// </summary>
-    public interface IUserGroupService
+	/// <summary>
+	/// Интерфейс сервиса работы с группами пользователя.
+	/// </summary>
+	public interface IUserGroupService
     {
 
         /// <summary>

@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
-using Services.Contracts.Role;
 using Services.Contracts.UserGroup;
-using WebApi.Models.Role;
 using WebApi.Models.UserGroup;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
     [ApiController]
     public class UserGroupController : ControllerBase
     {

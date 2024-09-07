@@ -1,23 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Domain.Entities;
 using Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts.User;
-using Services.Contracts.Group;
-using Services.Contracts.Role;
-using System.Security.Cryptography;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infrastructure.Repositories.Implementations
 {
-    /// <summary>
-    /// Репозиторий работы с пользователями.
-    /// </summary>
-    public class UserRepository : Repository<User, Guid>, IUserRepository
+	/// <summary>
+	/// Репозиторий работы с пользователями.
+	/// </summary>
+	public class UserRepository : Repository<User, Guid>, IUserRepository
     {
         public UserRepository(DatabaseContext context) : base(context)
         {

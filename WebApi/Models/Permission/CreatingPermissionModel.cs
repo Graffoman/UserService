@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-
-namespace WebApi.Models.Permission
+﻿namespace WebApi.Models.Permission
 {
     public class CreatingPermissionModel
     {

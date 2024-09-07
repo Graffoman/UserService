@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Services.Contracts.UserGroup;
-
-namespace Services.Contracts.Group
+﻿namespace Services.Contracts.Group
 {
-    public class GroupDto
+	public class GroupDto
     {
         /// <summary>
         /// Идентификатор.

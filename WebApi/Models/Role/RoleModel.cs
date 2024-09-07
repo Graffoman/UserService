@@ -1,8 +1,4 @@
-﻿using Services.Contracts.UserRole;
-using System.Collections.Generic;
-using WebApi.Models.Permission;
-
-namespace WebApi.Models.Role
+﻿namespace WebApi.Models.Role
 {
     /// <summary>
     /// ДТО Роли.

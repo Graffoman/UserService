@@ -1,31 +1,22 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using MassTransit;
 using Services.Abstractions;
 using Services.Contracts.UserRole;
 using Services.Repositories.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Implementations
 {
-    public class UserRoleService : IUserRoleService
+	public class UserRoleService : IUserRoleService
     {
         private readonly IMapper _mapper;
         private readonly IUserRoleRepository _userRoleRepository;
-        private readonly IBusControl _busControl;
 
         public UserRoleService(
             IMapper mapper,
-            IUserRoleRepository userRoleRepository,
-            IBusControl busControl)
+            IUserRoleRepository userRoleRepository)
         {
             _mapper = mapper;
             _userRoleRepository = userRoleRepository;
-            _busControl = busControl;
         }
 
         /// <summary>

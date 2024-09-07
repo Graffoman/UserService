@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
-using Services.Contracts.Group;
 using Services.Contracts.Role;
-using WebApi.Models.Group;
 using WebApi.Models.Role;
 using WebApi.Models.User;
 

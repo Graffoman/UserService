@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WebApi.Models.Role
+﻿namespace WebApi.Models.Role
 {
     public class UpdatingRoleModel
     {

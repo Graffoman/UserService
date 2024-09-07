@@ -1,13 +1,6 @@
-﻿using Services.Contracts.Role;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Services.Contracts.Permission
+﻿namespace Services.Contracts.Permission
 {
-    public class CreatingPermissionDto
+	public class CreatingPermissionDto
     {
         /// <summary>
         /// Идентификатор.

@@ -1,20 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Services.Abstractions;
+﻿using Services.Abstractions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Services.Contracts.User;
 using WebApi.Models.User;
 using WebApi.Models.Group;
 using WebApi.Models.Role;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using Domain.Entities;
-using Services.Contracts.Role;
-using Newtonsoft.Json;
-using RabbitMQ.Abstractions;
-using System.Net;
 
 namespace WebApi.Controllers
 {

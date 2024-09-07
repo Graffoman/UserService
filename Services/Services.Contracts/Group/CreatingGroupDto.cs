@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Services.Contracts.Group
+﻿namespace Services.Contracts.Group
 {
-    public class CreatingGroupDto
+	public class CreatingGroupDto
     {
 
         /// <summary>

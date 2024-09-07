@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
-using Services.Contracts.Permission;
-using Services.Contracts.UserRole;
-
-namespace Services.Contracts.Role
+﻿namespace Services.Contracts.Role
 {
-    /// <summary>
-    /// ДТО Роли.
-    /// </summary>
-    public class RoleDto
+	/// <summary>
+	/// ДТО Роли.
+	/// </summary>
+	public class RoleDto
     {
         /// <summary>
         /// Идентификатор.

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WebApi.Models.Role;
+﻿using WebApi.Models.Role;
 
 namespace WebApi.Models.Permission
 {

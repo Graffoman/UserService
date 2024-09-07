@@ -1,34 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Services.Abstractions;
 using AutoMapper;
-using CommonNamespace;
 using Domain.Entities;
-using MassTransit;
 using Services.Contracts.Group;
-using static MassTransit.Logging.OperationName;
-using System.Security.Cryptography;
 using Services.Contracts.User;
 
 namespace Services.Implementations
 {
-    public class GroupService : IGroupService
+	public class GroupService : IGroupService
     { 
         private readonly IMapper _mapper;
         private readonly IGroupReposotory _groupRepository;
-        private readonly IBusControl _busControl;
 
         public GroupService(
             IMapper mapper,
-            IGroupReposotory groupRepository,
-            IBusControl busControl)
+            IGroupReposotory groupRepository)
         {
             _mapper = mapper;
             _groupRepository = groupRepository;
-            _busControl = busControl;
         }
 
         /// <summary>
@@ -54,12 +43,7 @@ namespace Services.Implementations
             group.Id = Guid.NewGuid();
             var createdGroup = await _groupRepository.AddAsync(group);
             await _groupRepository.SaveChangesAsync();
-            /*
-            await _busControl.Publish(new MessageDto
-            {
-                Content = $"Group {createdGroup.Id} with name {createdGroup.Name} is added"
-            });
-            */
+
             return createdGroup.Id;
         }
 

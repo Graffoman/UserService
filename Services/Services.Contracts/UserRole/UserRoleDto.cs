@@ -1,16 +1,10 @@
 ﻿using Services.Contracts.Role;
 using Services.Contracts.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Contracts.UserRole
 {
-    public class UserRoleDto
+	public class UserRoleDto
     {
-
         /// <summary>
         /// Идентификатор.
         /// </summary>

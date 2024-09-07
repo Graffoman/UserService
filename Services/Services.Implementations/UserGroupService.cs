@@ -1,35 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Services.Abstractions;
 using AutoMapper;
-using CommonNamespace;
 using Domain.Entities;
-using MassTransit;
 using Services.Contracts.UserGroup;
-using static MassTransit.Logging.OperationName;
-using System.Security.Cryptography;
-using Services.Contracts.UserRole;
-using System.Text;
 
 namespace Services.Implementations
 {
-    public class UserGroupService : IUserGroupService
+	public class UserGroupService : IUserGroupService
     {
         private readonly IMapper _mapper;
         private readonly IUserGroupRepository _userGroupRepository;
-        private readonly IBusControl _busControl;
 
         public UserGroupService(
             IMapper mapper,
-            IUserGroupRepository userGroupRepository,
-            IBusControl busControl)
+            IUserGroupRepository userGroupRepository)
         {
             _mapper = mapper;
             _userGroupRepository = userGroupRepository;
-            _busControl = busControl;
         }
 
         /// <summary>

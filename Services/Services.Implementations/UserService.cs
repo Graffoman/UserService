@@ -1,47 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Services.Repositories.Abstractions;
+﻿using Services.Repositories.Abstractions;
 using Services.Abstractions;
 using AutoMapper;
-using CommonNamespace;
-using MassTransit;
 using Domain.Entities;
 using Services.Contracts.User;
-using static MassTransit.Logging.OperationName;
 using System.Security.Cryptography;
-using Services.Contracts.UserRole;
 using System.Text;
 using Services.Contracts.Group;
 using Services.Contracts.Role;
 using Newtonsoft.Json;
 using RabbitMQ.Abstractions;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 
 namespace Services.Implementations
 {
 
-    /// <summary>
-    /// Cервис работы с пользователями.
-    /// </summary>
-    public class UserService : IUserService
+	/// <summary>
+	/// Cервис работы с пользователями.
+	/// </summary>
+	public class UserService : IUserService
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        private readonly IBusControl _busControl;
         private readonly IRabbitMqProducer _rabbitMqProducer;
 
         public UserService(
             IMapper mapper,
             IUserRepository userRepository,
-            IBusControl busControl,
             IRabbitMqProducer rabbitMqProducer)
         {
             _mapper = mapper;
             _userRepository = userRepository;
-            _busControl = busControl;
             _rabbitMqProducer = rabbitMqProducer;
         }
 
